@@ -1,0 +1,67 @@
+#FPGA
+# ignore Quartus II generated folders
+*_sim
+db
+greybox_tmp
+incremental_db
+simulation
+timing
+hps_isw_handoff
+output_files
+
+# ignore Quartus II generated files
+**/*_generation_script*
+**/*_inst.vhd
+**/*.bak
+**/*.cmp
+**/*.done
+**/*.eqn
+**/*.html
+**/*.rpt.html
+**/*.flow.rpt.htm
+**/*.map.rpt.htm
+**/*.sta.rpt.htm
+**/*.fit.rpt.htm
+**/*.asm.rpt.htm
+**/*.jdi
+**/*.jpg
+**/*.mif
+**/*.pin
+**/*.pof
+**/*.ptf.*
+**/*.qar
+**/*.qarlog
+**/*.qws
+**/*.rpt
+**/*.smsg
+**/*.sopc_builder
+**/*.summary
+**/*.tcl
+**/*.sopcinfo
+*.txt
+v*~
+**/*example*
+
+# ignore ModelSim generated files and directories (temp files and so on)
+ModelSim/[_@]*
+
+# ignore compilation output of ModelSim
+ModelSim/*.mti
+ModelSim/*.dat
+ModelSim/*.dbs
+ModelSim/*.psm
+ModelSim/*.bak
+ModelSim/*.cmp
+ModelSim/*.jpg
+ModelSim/*.html
+ModelSim/*.bsf
+
+# ignore simulation output of ModelSim
+ModelSim/wlf*
+ModelSim/*.wlf
+ModelSim/*.vstf
+ModelSim/*.ucdb
+ModelSim/cov*/
+ModelSim/transcript*
+ModelSim/sc_dpiheader.h
+ModelSim/vsim.dbg
