@@ -54,17 +54,15 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name SYSTEMVERILOG_FILE source/testbench_sys_array_fetcher.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/testbench_sys_array.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/sys_array_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/sys_array_fetcher.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/sys_array_cell.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/sys_array_basic.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/sum_and_max.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/shift_reg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/seg7_tohex.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/roma.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/clock_divider.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/romb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE source/testbench_shift_reg.sv
+set_global_assignment -name HEX_FILE b_data.hex
+set_global_assignment -name HEX_FILE a_data.hex
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/sys_array_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/sys_array_fetcher.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/sys_array_cell.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/sys_array_basic.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/shift_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/seg7_tohex.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/romb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/roma.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/SystemVerilog/clock_divider.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
