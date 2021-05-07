@@ -10,7 +10,6 @@ parameter CLOCK_DIVIDE = 25)
     output [4*DATA_WIDTH-1:0] hex_connect
 );
 
-//localparam MEM_SIZE = ARRAY_W*ARRAY_L;
 localparam ARRAY_SIZE = ARRAY_W*ARRAY_W;
 localparam NUM_HEX = DATA_WIDTH >> 1; //number of hex modules needed to display a result (DW / 2)
 
@@ -24,7 +23,6 @@ reg [CLOCK_DIVIDE : 0] small_cnt;
 reg [1:0] propagate_reg_ctrl; //control the output of propagate parallel to serial converter register
 
 genvar ii;
-//roma #(.DATA_WIDTH(DATA_WIDTH), .SIZE(MEM_SIZE)) rom_instance_a 
 roma 
 #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L)) 
 rom_instance_a
@@ -32,7 +30,6 @@ rom_instance_a
     .data_rom(input_data_a)
 );
 
-//romb #(.DATA_WIDTH(DATA_WIDTH), .SIZE(MEM_SIZE)) rom_instance_b 
 romb 
 #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L)) 
 rom_instance_b

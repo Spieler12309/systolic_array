@@ -20,7 +20,7 @@ genvar t;
 generate
 	for(i = 0; i < ARRAY_W; i = i + 1) begin : generate_array_proc
 		 for (j = 0; j < ARRAY_L; j = j + 1) begin : generate_array_proc2
-		 if ((i === 0) && (j === 0)) // i - строка, j - столбец
+		 if ((i == 0) && (j == 0)) // i - строка, j - столбец
 		 begin
 			  sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst ( 
 			  .clk(clk),
@@ -33,7 +33,7 @@ generate
 			  .prop_param(propagate_module[0][0])
 			  );
 		 end
-		 else if (i === 0) //первая строка
+		 else if (i == 0) //первая строка
 		 begin
 			  sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst (
 			  .clk(clk),
@@ -46,7 +46,7 @@ generate
 			  .prop_param(propagate_module[0][j])
 			  );
 		 end
-		 else if (j === 0) //первый столбец
+		 else if (j == 0) //первый столбец
 		 begin
 			  sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst (
 			  .clk(clk),
