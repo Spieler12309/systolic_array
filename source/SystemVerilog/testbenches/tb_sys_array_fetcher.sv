@@ -1,6 +1,6 @@
 //`timescale 1 ns / 100 ps
 
-module testbench_sys_array_fetcher
+module tb_sys_array_fetcher
 #(
 	parameter DATA_WIDTH=8,
 	parameter ARRAY_W=5, //i
@@ -12,7 +12,10 @@ reg [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH-1:0] input_data_b;
 
 wire ready;
 wire [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] out_data;
-	 
+wire [15:0] cnt;
+wire div_clk;
+wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] mem_read;
+wire [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] mem_write;
 
 sys_array_fetcher 
 #(.DATA_WIDTH(DATA_WIDTH), 
@@ -26,7 +29,11 @@ sys_array_fetcher0 (
   .input_data_a(input_data_a),
   .input_data_b(input_data_b),
   .ready(ready),
-  .out_data(out_data)
+  .out_data(out_data),
+  .cnt(cnt),
+  .div_clk(div_clk),
+  .mem_read(mem_read),
+  .mem_write(mem_write)
 );
 
 initial $dumpvars;
@@ -40,7 +47,7 @@ integer i, j;
 initial
     begin
       reset_n=0; load_params = 0;
-      #80; reset_n=1;
+      #120; reset_n=1;
       #20;
       load_params = 1'b1;
 		  
@@ -56,9 +63,9 @@ initial
       end
 		  #20;
 		  load_params = 1'b0;
-		  #10;
+		  #120;
 		  start_comp = 1'b1;
-		  #20;
+		  #120;
 		  start_comp = 1'b0;
 		  
     end

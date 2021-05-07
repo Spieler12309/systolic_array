@@ -1,6 +1,6 @@
 //`timescale 1 ns / 100 ps
 
-module testbench_sys_array_cell
+module tb_sys_array_cell
 #(parameter DATA_WIDTH=8);
 	
 reg  signed [DATA_WIDTH - 1:0] input_data;

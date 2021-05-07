@@ -1,19 +1,17 @@
 module sys_array_wrapper 
-
-#(parameter DATA_WIDTH=8,
-parameter ARRAY_W=5, //i
-parameter ARRAY_L=2, //j
-parameter CLOCK_DIVIDE=25) 
-
+#(parameter DATA_WIDTH = 8,
+parameter ARRAY_W = 5, //i
+parameter ARRAY_L = 2, //j
+parameter CLOCK_DIVIDE = 25)
 (   input  clk,
     input  reset_n,
     input  load_params,
     input  start_comp,
     output [4*DATA_WIDTH-1:0] hex_connect
-    );
+);
 
-//localparam MEM_SIZE=ARRAY_W*ARRAY_L;
-localparam ARRAY_SIZE=ARRAY_W*ARRAY_W;
+//localparam MEM_SIZE = ARRAY_W*ARRAY_L;
+localparam ARRAY_SIZE = ARRAY_W*ARRAY_W;
 localparam NUM_HEX = DATA_WIDTH >> 1; //number of hex modules needed to display a result (DW / 2)
 
 wire clk_div, ready;

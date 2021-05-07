@@ -1,6 +1,8 @@
 module seg7_tohex
-(input [3:0] code,
-    output reg [7:0] hexadecimal);
+(   input [3:0] code,
+    output reg [7:0] hexadecimal
+);
+
 always @ (*)
 begin
     case (code)

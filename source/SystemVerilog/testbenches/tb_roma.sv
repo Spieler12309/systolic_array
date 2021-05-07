@@ -1,6 +1,6 @@
 //`timescale 1 ns / 100 ps
 
-module testbench_roma
+module tb_roma
 #(
 	parameter DATA_WIDTH=8,
 	parameter ARRAY_W=5,

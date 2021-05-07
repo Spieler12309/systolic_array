@@ -8,6 +8,8 @@ simulation
 timing
 hps_isw_handoff
 output_files
+.vscode
+scripts/python/take_layers
 
 # ignore Quartus II generated files
 **/*_generation_script*

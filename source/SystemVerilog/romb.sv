@@ -3,7 +3,7 @@ module romb
 parameter ARRAY_W=4, 
 parameter ARRAY_L=4)
 (	input clk,
-  output reg [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH - 1:0] data_rom
+    output reg [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH - 1:0] data_rom
 );
 
 genvar i, j;

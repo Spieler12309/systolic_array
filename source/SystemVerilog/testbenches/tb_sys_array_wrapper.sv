@@ -1,6 +1,6 @@
 //`timescale 1 ns / 100 ps
 
-module testbench_sys_array_wrapper
+module tb_sys_array_wrapper
 #(
 	parameter DATA_WIDTH=8,
 	parameter ARRAY_W=4, //i
