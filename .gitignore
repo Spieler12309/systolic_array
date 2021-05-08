@@ -8,7 +8,9 @@ simulation
 timing
 hps_isw_handoff
 output_files
-.vscode
+.vscode/*
+!.vscode/tasks.json
+!.vscode/runmodelsim.cmd
 scripts/python/take_layers
 
 # ignore Quartus II generated files
