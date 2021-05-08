@@ -67,3 +67,5 @@ ModelSim/cov*/
 ModelSim/transcript*
 ModelSim/sc_dpiheader.h
 ModelSim/vsim.dbg
+
+sim
