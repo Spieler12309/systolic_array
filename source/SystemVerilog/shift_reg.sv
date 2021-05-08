@@ -11,7 +11,6 @@ parameter PTR_LENGTH = 5)
 	output reg [DATA_WIDTH-1:0] data_read,
 	output reg [0:LENGTH-1] [DATA_WIDTH-1:0] data_out,
 
-    output reg start,
     output fifo_full, 
     output fifo_empty, 
     output fifo_threshold, 
@@ -79,7 +78,7 @@ initial begin
     prev_code <= 2'b00;
     read <= 1'b0;
     write <= 1'b0;
-    start <= 1'b0;
+    //start <= 1'b0;
     del <= 0;
 end
 
