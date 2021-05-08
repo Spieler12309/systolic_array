@@ -38,7 +38,6 @@ scripts/python/take_layers
 **/*.smsg
 **/*.sopc_builder
 **/*.summary
-**/*.tcl
 **/*.sopcinfo
 *.txt
 v*~
@@ -59,7 +58,7 @@ ModelSim/*.html
 ModelSim/*.bsf
 
 # ignore simulation output of ModelSim
-ModelSim/wlf*
+ModelSim/wlf*ы
 ModelSim/*.wlf
 ModelSim/*.vstf
 ModelSim/*.ucdb
@@ -67,3 +66,6 @@ ModelSim/cov*/
 ModelSim/transcript*
 ModelSim/sc_dpiheader.h
 ModelSim/vsim.dbg
+ModelSim/*.
+
+sim
