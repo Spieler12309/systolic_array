@@ -28,11 +28,10 @@ wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] empty_wire2_reads;
 wire [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] empty_wire_writes;
 wire [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] empty_wire2_writes;
 wire [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] output_sys_array;
-wire [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] output_wire;
 
 genvar i,j;
-wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] transposed_a; //transposing a matrix
-//transpose matrix a
+wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] transposed_a; 
+//транспонирование матрицы A
 generate
     for (i=0;i<ARRAY_W;i=i+1) begin: transpose_i
         for (j=0;j<ARRAY_L;j=j+1) begin: transpose_j
@@ -58,16 +57,37 @@ endgenerate
 Кредитный счетчик, чтобы вместить в FIFO.
 Или по флагу.
 */
-generate //переделать на FIFO
+
+reg read;
+
+wire fifo_full;
+wire fifo_empty;
+wire fifo_threshold;
+wire fifo_overflow;
+wire fifo_underflow;
+wire enable;
+wire [ARRAY_W-1:0][2 * DATA_WIDTH-1:0] data_out;
+
+generate
     for (i=0;i<ARRAY_W;i=i+1) begin: generate_writes_shift_reg
-        shift_reg #(.DATA_WIDTH(2*DATA_WIDTH), .LENGTH(ARRAY_W)) writes
-        (   .clk(clk),
-            .reset_n(reset_n),
-            .ctrl_code(control_sr_write[i]),
-            .data_in(empty_wire_writes[i]),
-            .data_write(output_sys_array[i]),
-            .data_read(empty_wire2_writes[i]),
-            .data_out(output_wire[i])
+        fifo_mem #(
+            .DATA_WIDTH ( 2 * DATA_WIDTH ),
+            .LENGTH     ( ARRAY_W     ),
+            .PTR_LENGTH ( PTR_LENGTH ))
+        fifo_mem_write[ARRAY_W-1:0]  (
+            .clk            ( clk                    ),
+            .reset_n        ( reset_n                ),
+            .write          ( control_sr_write[i][1] ),
+            .read           ( read                   ),
+            .data_in        ( output_sys_array[i]    ),
+   
+            .fifo_full      ( fifo_full              ),
+            .fifo_empty     ( fifo_empty             ),
+            .fifo_threshold ( fifo_threshold         ),
+            .fifo_overflow  ( fifo_overflow          ),
+            .fifo_underflow ( fifo_underflow         ),
+            .enable         ( enable                 ),
+            .data_out       ( data_out[i]            )
         );
     end
 endgenerate
@@ -82,44 +102,71 @@ systolic_array
     .out_module(output_sys_array)
 );
 
+reg [15:0] res;
 always @(posedge clk)
 begin
-    if (~reset_n) begin //reset case
+    if (~reset_n) begin // reset
         cnt <= 15'd0;
         control_sr_read <= {ARRAY_L*2{1'b0}};
         control_sr_write <= {ARRAY_W*2{1'b0}};
         ready <= 1'b0;
+        res <= 'd0;
     end
-    else if(start_comp) begin //initiate computation
+    else if(enable && start_comp) begin // Начало вычислений
         cnt <= 15'd1;
         control_sr_read <= {ARRAY_L{2'b01}}; //initiate loading read registers
     end
-    else if (cnt>0) begin //compute the whole thing
-        if (cnt == 1) begin //fetch data into first array input
+    else if (enable && cnt > 0) begin // Основные вычисления
+        if (cnt == 1) begin // Задание сигналова на первом такте вычислений
             control_sr_read[ARRAY_L-1:1] <= {2*(ARRAY_L-1){1'b0}};
             control_sr_read[0] <= 2'b11;
             cnt <= cnt+1'b1; end
-        else begin //fetching logic
-            if (cnt < ARRAY_L+1) //enable read registers
+        else begin // Задание логических сигналов
+            if (cnt < ARRAY_L+1) // Включение регистров чтения
                 control_sr_read[cnt-1] = 2'b11; 
-
-            if ((cnt > ARRAY_W) && (cnt < ARRAY_L+ARRAY_W+1)) //start disabling read registers
+            if ((cnt > ARRAY_W) && (cnt < ARRAY_L+ARRAY_W+1)) // Старт отклбчения регистров чтения
                 control_sr_read[cnt-ARRAY_W-1] = 2'b00;
-
-            if ((cnt > ARRAY_L+1) && (cnt < ARRAY_L+ARRAY_W+2)) //enable write registers
+            if ((cnt > ARRAY_L+1) && (cnt < ARRAY_L+ARRAY_W+2)) // Включение регистров записи
                 control_sr_write[cnt-ARRAY_L-2] = 2'b10;
-
-            if ((cnt>ARRAY_L+ARRAY_W+1) && (cnt<=FETCH_LENGTH)) //start disabling write registers
+            if ((cnt>ARRAY_L+ARRAY_W+1) && (cnt<=FETCH_LENGTH)) // Старт отключения регистров записи
                 control_sr_write[cnt-(ARRAY_L+ARRAY_W)-2] = 2'b00;
             
             if (cnt <= FETCH_LENGTH+1)
                 cnt = cnt+1'b1;
-            else begin //propagate outputs.
-                cnt <= 15'd0;
-                out_data <= output_wire;
-                ready <= 1'b1;
+            else begin // Выдача итогового результата
+                if (res > ARRAY_W - 1) 
+                begin
+                    cnt <= 15'd0;
+                    ready <= 1'b1;
+                end
             end
         end
     end
 end
+generate
+    for (i=0;i<ARRAY_W;i=i+1) begin: generate_outputs_from_fifo
+        always @(posedge clk)
+        begin
+            if (~reset_n) begin // reset
+                res <= 'd0;
+            end
+            else
+            begin
+                if ((cnt > FETCH_LENGTH + 1) && (res <= ARRAY_W)) begin
+                    if (res == 1'b0) begin
+                        read <= 1'b1;
+                    end
+                    else begin
+                        out_data[i][res - 1] <= data_out[i];
+                    end
+                    res <= res + 1;                    
+                end
+                else begin
+                    read <= 1'b0;
+                end
+            end
+        end
+    end
+endgenerate
+
 endmodule

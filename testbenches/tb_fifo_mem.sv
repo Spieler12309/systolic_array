@@ -3,7 +3,7 @@
 `define DELAY 10  
 
 module tb_fifo_mem;  
-parameter ENDTIME      = 40000;  
+parameter ENDTIME      = 2500;  
 parameter DATA_WIDTH = 8;
 parameter LENGTH = 16;
 parameter PTR_LENGTH = 5;
@@ -20,6 +20,7 @@ wire fifo_full;
 wire fifo_threshold;  
 wire fifo_overflow;  
 wire fifo_underflow;  
+wire enable;
 integer i;  
  
 fifo_mem tb 
@@ -35,6 +36,7 @@ fifo_mem tb
     .fifo_threshold(fifo_threshold),
     .fifo_overflow(fifo_overflow),
     .fifo_underflow(fifo_underflow),
+    .enable(enable),
     .data_out(data_out)
  );  
 

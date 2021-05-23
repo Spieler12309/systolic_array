@@ -7,7 +7,7 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_sys_array_cell.sv ../source/sys_array_cell.sv
+vlog +incdir+./ ../testbenches/tb_shift_array.sv ../source/shift_reg.sv
 
 # указываем топовый TestBench
 vsim -novopt work.tb_sys_array_cell

@@ -24,6 +24,7 @@ add wave -noupdate -radix decimal sim:/tb_fifo_mem/fifo_empty
 add wave -noupdate -radix decimal sim:/tb_fifo_mem/fifo_threshold
 add wave -noupdate -radix decimal sim:/tb_fifo_mem/fifo_overflow
 add wave -noupdate -radix decimal sim:/tb_fifo_mem/fifo_underflow
+add wave -noupdate -radix decimal sim:/tb_fifo_mem/enable
 add wave -noupdate -radix decimal sim:/tb_fifo_mem/data_out
 
 # симуляция и отображение результатов

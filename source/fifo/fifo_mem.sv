@@ -14,11 +14,14 @@ module fifo_mem
 	output fifo_threshold, 
 	output fifo_overflow, 
 	output fifo_underflow,
+    output enable,
 	output [DATA_WIDTH-1:0] data_out
 );  
 
 wire [PTR_LENGTH-1:0] wptr, rptr;
 wire fifo_write, fifo_read;   
+
+assign enable = 1'b1;
 
 write_pointer#(
     .PTR_LENGTH ( PTR_LENGTH )
