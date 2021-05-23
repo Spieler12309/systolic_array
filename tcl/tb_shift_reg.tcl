@@ -7,27 +7,21 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_shift_array.sv ../source/shift_array.sv
-vlog +incdir+./ ../source/fifo/fifo_mem.sv ../source/fifo/write_pointer.sv ../source/fifo/read_pointer.sv ../source/fifo/status_signal.sv ../source/fifo/memory_array.sv
+vlog +incdir+./ ../testbenches/tb_shift_reg.sv ../source/shift_reg.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_shift_array
+vsim -novopt work.tb_shift_reg
 
 # добавление сигналов к отображению
-add wave sim:/tb_shift_array/clk
-add wave sim:/tb_shift_array/reset_n
-add wave sim:/tb_shift_array/ctrl_code
-add wave sim:/tb_shift_array/data_in
-add wave sim:/tb_shift_array/data_write
+add wave sim:/tb_shift_reg/clk
+add wave sim:/tb_shift_reg/reset_n
+add wave sim:/tb_shift_reg/enable
+add wave sim:/tb_shift_reg/ctrl_code
+add wave sim:/tb_shift_reg/data_in
+add wave sim:/tb_shift_reg/data_write
 
-add wave sim:/tb_shift_array/data_read
-add wave sim:/tb_shift_array/data_out
-
-add wave sim:/tb_shift_array/fifo_full
-add wave sim:/tb_shift_array/fifo_empty
-add wave sim:/tb_shift_array/fifo_threshold
-add wave sim:/tb_shift_array/fifo_overflow
-add wave sim:/tb_shift_array/fifo_underflow
+add wave sim:/tb_shift_reg/data_read
+add wave sim:/tb_shift_reg/data_out
 
 # симуляция и отображение результатов
 run -all

@@ -23,6 +23,7 @@ reg [CLOCK_DIVIDE : 0] small_cnt;
 reg [1:0] propagate_reg_ctrl; //control the output of propagate parallel to serial converter register
 
 genvar ii;
+// Модуль считывания матрицы A
 roma 
 #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L)) 
 rom_instance_a
@@ -30,6 +31,7 @@ rom_instance_a
     .data_rom(input_data_a)
 );
 
+// Модуль считывания матрицы B
 romb 
 #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L)) 
 rom_instance_b
@@ -37,6 +39,7 @@ rom_instance_b
     .data_rom(input_data_b)
 );
 
+// Модуль вычислителя
 sys_array_fetcher 
 #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L)) 
 fetching_unit
@@ -51,11 +54,13 @@ fetching_unit
     .out_data(outputs_fetcher)
 );
 
+// Модуль делителя тактового сигнала
 clock_divider 
 #(.DIVIDE_LEN(CLOCK_DIVIDE)) 
 clock_divaaa (.clk(clk), .div_clock(clk_div));
 
 genvar qq, ww;
+// Генерация связей для сохранения результата вычислений
 generate
     for (qq = 0; qq < ARRAY_W; qq = qq + 1) begin: transfer_to_outputs_fetcher_shift_reg_W
         for (ww = 0; ww < ARRAY_W; ww = ww + 1) begin: transfer_to_outputs_fetcher_shift_reg_L
@@ -77,6 +82,7 @@ propagate_reg
     .data_write(empty_data_write)
 );
 
+// Генерация модулей для семисегментных переключателей
 generate
     for (ii=0; ii<NUM_HEX; ii=ii+1) begin : generate_hexes
         seg7_tohex hex_converter_i 

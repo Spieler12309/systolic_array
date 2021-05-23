@@ -14,12 +14,13 @@ parameter ARRAY_L=4) //j
     output reg ready,
     output reg [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] out_data);
 
-localparam FETCH_LENGTH = ARRAY_L+ARRAY_W*2+1; //necessary amount of clk cycles to perform fetching and get back the results
+localparam FETCH_LENGTH = ARRAY_L+ARRAY_W*2+1; // Необходимое количество циклов clk для выполнения выборки и возврата результатов
 
-reg [15:0] cnt; //counter
-reg [ARRAY_L-1:0] [1:0] control_sr_read;
-reg [ARRAY_W-1:0] [1:0] control_sr_write;
+reg [15:0] cnt; // Счетчик
+reg [ARRAY_L-1:0] [1:0] control_sr_read; // Контрольные сигналы регистра чтения
+reg [ARRAY_W-1:0] [1:0] control_sr_write; // Контрольные сигналы регистра записи
 
+wire en;
 wire [0:ARRAY_L-1] [DATA_WIDTH-1:0] input_sys_array;
 wire [0:ARRAY_L-1] [DATA_WIDTH-1:0] empty_wire_reads;
 wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] empty_wire2_reads;
@@ -29,12 +30,11 @@ wire [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] output_sys_array;
 wire [0:ARRAY_W-1] [0:ARRAY_W-1] [2*DATA_WIDTH-1:0] output_wire;
 
 genvar i,j;
-wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] transposed_a; //transposing a matrix
-//transpose matrix a
+wire [0:ARRAY_L-1] [0:ARRAY_W-1] [DATA_WIDTH-1:0] transposed_a; 
+//транспонирование матрицы A
 generate
     for (i=0;i<ARRAY_W;i=i+1) begin: transpose_i
         for (j=0;j<ARRAY_L;j=j+1) begin: transpose_j
-            //assign transposed_a[DATA_WIDTH*(ARRAY_W*j+i) +: DATA_WIDTH] = input_data_a [DATA_WIDTH*(ARRAY_L*i+j) +: DATA_WIDTH];
             assign transposed_a[j][i] = input_data_a[i][j];
         end
     end
@@ -48,6 +48,7 @@ generate
             .ctrl_code(control_sr_read[i]),
             .data_in(transposed_a[i]),
             .data_write(empty_wire_reads[i]),
+            .en(en),
             .data_read(input_sys_array[i]),
             .data_out(empty_wire2_reads[i])
         );
@@ -62,6 +63,7 @@ generate
             .ctrl_code(control_sr_write[i]),
             .data_in(empty_wire_writes[i]),
             .data_write(output_sys_array[i]),
+            .en(en),
             .data_read(empty_wire2_writes[i]),
             .data_out(output_wire[i])
         );
@@ -81,33 +83,34 @@ systolic_array
 
 always @(posedge clk)
 begin
-    if (~reset_n) begin//reset case
+    if (~reset_n) begin // reset
         cnt <= 15'd0;
         control_sr_read <= {ARRAY_L*2{1'b0}};
         control_sr_write <= {ARRAY_W*2{1'b0}};
         ready <= 1'b0;
     end
-    else if(start_comp) begin//initiate computation
+    else if(en && start_comp) begin // Начало вычислений
         cnt <= 15'd1;
         control_sr_read <= {ARRAY_L{2'b01}}; //initiate loading read registers
     end
-    else if (cnt>0) begin //compute the whole thing
-        if (cnt == 1) begin //fetch data into first array input
+    else if (en && cnt > 0) begin // Основные вычисления
+        if (cnt == 1) begin // Задание сигналова на первом такте вычислений
             control_sr_read[ARRAY_L-1:1] <= {2*(ARRAY_L-1){1'b0}};
             control_sr_read[0] <= 2'b11;
             cnt <= cnt+1'b1; end
-        else begin //fetching logic
-            if (cnt < ARRAY_L+1) //enable read registers
+        else begin // Задание логических сигналов
+            if (cnt < ARRAY_L+1) // Включение регистров чтения
                 control_sr_read[cnt-1] = 2'b11; 
-            if ((cnt > ARRAY_W) && (cnt < ARRAY_L+ARRAY_W+1)) //start disabling read registers
+            if ((cnt > ARRAY_W) && (cnt < ARRAY_L+ARRAY_W+1)) // Старт отклбчения регистров чтения
                 control_sr_read[cnt-ARRAY_W-1] = 2'b00;
-            if ((cnt > ARRAY_L+1) && (cnt < ARRAY_L+ARRAY_W+2)) //enable write registers
+            if ((cnt > ARRAY_L+1) && (cnt < ARRAY_L+ARRAY_W+2)) // Включение регистров записи
                 control_sr_write[cnt-ARRAY_L-2] = 2'b10;
-            if ((cnt>ARRAY_L+ARRAY_W+1) && (cnt<=FETCH_LENGTH)) //start disabling write registers
+            if ((cnt>ARRAY_L+ARRAY_W+1) && (cnt<=FETCH_LENGTH)) // Старт отклбчения регистров записи
                 control_sr_write[cnt-(ARRAY_L+ARRAY_W)-2] = 2'b00;
+            
             if (cnt <= FETCH_LENGTH+1)
                 cnt = cnt+1'b1;
-            else begin//propagate outputs.
+            else begin // Выдача итогового результата
                 cnt <= 15'd0;
                 out_data <= output_wire;
                 ready <= 1'b1;

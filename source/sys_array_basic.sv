@@ -17,6 +17,7 @@ wire [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH-1:0] propagate_module;
 genvar i;
 genvar j;
 genvar t;
+// Генерация массива вычислительных ячеек
 generate
 	for(i = 0; i < ARRAY_W; i = i + 1) begin : generate_array_proc
 		 for (j = 0; j < ARRAY_L; j = j + 1) begin : generate_array_proc2
@@ -76,6 +77,7 @@ generate
 	end
 endgenerate
 
+// Генерация связей для выходных данных
 generate
 	for (t=0;t<ARRAY_W;t=t+1) begin: output_prop
 		assign out_module[t] = output_data[t][ARRAY_L-1];

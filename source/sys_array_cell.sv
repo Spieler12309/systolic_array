@@ -15,14 +15,14 @@ reg signed [DATA_WIDTH-1:0] param;
 
 always @(posedge clk)
 begin
-	if (~reset_n) begin
+	if (~reset_n) begin // reset
 		out_data <= {2 * DATA_WIDTH{1'b0}};
 		param <= {DATA_WIDTH{1'b0}};
 	end
-	else if (param_load) begin
+	else if (param_load) begin // Загрузка параметров
 		param <= param_data;
 	end
-	else begin
+	else begin // Вычисление
 		out_data <= prop_data + input_data * param;
 		prop_param <= input_data;
 	end
