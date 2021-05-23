@@ -134,8 +134,10 @@ begin
             if (cnt <= FETCH_LENGTH+1)
                 cnt = cnt+1'b1;
             else begin // Выдача итогового результата
-                if (res > ARRAY_W - 1) 
-                begin
+                if (res < ARRAY_W) begin
+                    res <= res + 1;
+                end
+                else begin
                     cnt <= 15'd0;
                     ready <= 1'b1;
                 end
@@ -143,27 +145,18 @@ begin
         end
     end
 end
+
+// Генерация always блоков для присваивания результата
 generate
     for (i=0;i<ARRAY_W;i=i+1) begin: generate_outputs_from_fifo
         always @(posedge clk)
         begin
-            if (~reset_n) begin // reset
-                res <= 'd0;
+            if ((cnt > FETCH_LENGTH + 1) && (res < ARRAY_W)) begin
+                read <= 1'b1;
+                out_data[i][res] <= data_out[i];                          
             end
-            else
-            begin
-                if ((cnt > FETCH_LENGTH + 1) && (res <= ARRAY_W)) begin
-                    if (res == 1'b0) begin
-                        read <= 1'b1;
-                    end
-                    else begin
-                        out_data[i][res - 1] <= data_out[i];
-                    end
-                    res <= res + 1;                    
-                end
-                else begin
-                    read <= 1'b0;
-                end
+            else begin
+                read <= 1'b0;
             end
         end
     end
