@@ -38,7 +38,30 @@ initial begin
     forever #10 clk=!clk;
 end
 
-integer i, j;
+genvar i, j;
+reg [DATA_WIDTH-1:0] roma [ARRAY_W*ARRAY_L-1:0];
+reg [DATA_WIDTH-1:0] romb [ARRAY_W*ARRAY_L-1:0];
+
+initial begin
+    $readmemh ("a_data.hex", roma);
+    $readmemh ("b_data.hex", romb);
+end
+
+generate
+    for (i=0;i<ARRAY_W;i=i+1) begin: generate_roma_W
+        for (j=0;j<ARRAY_L;j=j+1) begin: generate_roma_L
+	        assign input_data_a[i][j] = roma[ARRAY_L*i + j];
+	    end
+    end
+endgenerate
+
+generate
+    for (i=0;i<ARRAY_W;i=i+1) begin: generate_romb_W
+        for (j=0;j<ARRAY_L;j=j+1) begin: generate_romb_L
+	        assign input_data_b[i][j] = romb[ARRAY_L*i + j];
+	    end
+    end
+endgenerate
 
 initial
     begin
@@ -46,17 +69,8 @@ initial
         #120; reset_n=1;
         #20;
         load_params = 1'b1;
-            
-        for (i=0;i<ARRAY_W;i=i+1) begin
-            for (j=0;j<ARRAY_L;j=j+1) begin
-                input_data_a[i][j] = ARRAY_L*i + j + 1;
-            end
-        end
-        for (i=0;i<ARRAY_W;i=i+1) begin
-            for (j=0;j<ARRAY_L;j=j+1) begin
-                input_data_b[i][j] = ARRAY_L*i + j + 1;
-            end
-        end
+
+
         #20;
         load_params = 1'b0;
         #120;
