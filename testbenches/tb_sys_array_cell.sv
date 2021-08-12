@@ -1,4 +1,4 @@
-//`timescale 1 ns / 100 ps
+`timescale 1 ns / 100 ps
 
 module tb_sys_array_cell
 #(parameter DATA_WIDTH=8);
@@ -43,5 +43,6 @@ initial
         #5; $display("time = ", $time, " out_data = ", out_data, " prop_param = ", prop_param);
         #15; input_data = 8'd5;
         #5; $display("time = ", $time, " out_data = ", out_data, " prop_param = ", prop_param);
+        $finish;
     end
 endmodule

@@ -17,8 +17,8 @@ add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/cl
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/reset_n
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/load_params
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/start_comp
-add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_a
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_b
+add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_w
 
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/ready
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/out_data
@@ -26,5 +26,5 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/o
 # симуляция и отображение результатов
 run -all
 #wave zoom full
-#WaveRestoreZoom {0 ns} [simtime]
-WaveRestoreZoom {0 ns} {1000 ns} 
+WaveRestoreZoom {0 ns} [simtime]
+#WaveRestoreZoom {0 ns} {1000 ns} 

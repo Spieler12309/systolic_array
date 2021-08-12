@@ -25,5 +25,5 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/pro
 # симуляция и отображение результатов
 run -all
 #wave zoom full
-#WaveRestoreZoom {0 ns} [simtime]
-WaveRestoreZoom {0 ns} {1000 ns} 
+WaveRestoreZoom {0 ns} [simtime]
+#WaveRestoreZoom {0 ns} {1000 ns} 
