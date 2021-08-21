@@ -8,6 +8,7 @@ parameter LENGTH=4)
 	input [0:LENGTH-1] [DATA_WIDTH-1:0] data_in,
 	input [DATA_WIDTH-1:0] data_write,
 
+    output reg en,
 	output reg [DATA_WIDTH-1:0] data_read,
 	output reg [0:LENGTH-1] [DATA_WIDTH-1:0] data_out
 );
@@ -27,26 +28,33 @@ begin
         for(i = 0; i < LENGTH; i = i + 1) begin : for_reset_n
             contents[i] <= {DATA_WIDTH{1'b0}};
         end     
+        en <= 1'b1;
     end
     else
     begin
-        case (ctrl_code)
-            REG_UPLOAD: data_out <= contents;
-            REG_LOAD: contents <= data_in;
-            REG_READ: begin 
-                data_read <= contents[0]; 
-                for (i = 0; i < LENGTH - 1; i = i + 1) begin : for_REG_READ
-                    contents[i] <= contents[i+1];
+        if (en)
+        begin
+            case (ctrl_code)
+                REG_UPLOAD: begin
+                    data_out <= contents;
+                    data_read <= 'b0;
                 end
-                contents[LENGTH-1] <= contents[0];        
-            end
-            REG_WRITE: begin
-                for (i = 0; i < LENGTH - 1; i = i + 1) begin : for_REG_WRITE
-                    contents[i] <= contents[i+1];
+                REG_LOAD: contents <= data_in;
+                REG_READ: begin 
+                    data_read <= contents[0]; 
+                    for (i = 0; i < LENGTH - 1; i = i + 1) begin : for_REG_READ
+                        contents[i] <= contents[i+1];
+                    end
+                    contents[LENGTH-1] <= contents[0];        
                 end
-                contents[LENGTH-1] <= data_write;   
-            end
-        endcase
+                REG_WRITE: begin
+                    for (i = 0; i < LENGTH - 1; i = i + 1) begin : for_REG_WRITE
+                        contents[i] <= contents[i+1];
+                    end
+                    contents[LENGTH-1] <= data_write;   
+                end
+            endcase
+        end
     end
 end
 

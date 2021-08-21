@@ -17,7 +17,7 @@ always @(posedge clk)
 begin
 	if (~reset_n) begin // reset
 		out_data <= {2 * DATA_WIDTH{1'b0}};
-		param <= {DATA_WIDTH{1'b0}};
+		//param <= {DATA_WIDTH{1'b0}};
 	end
 	else if (param_load) begin // Загрузка параметров
 		param <= param_data;

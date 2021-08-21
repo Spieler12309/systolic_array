@@ -1,29 +1,28 @@
 module sys_array_basic
 #(
 	parameter DATA_WIDTH = 8,
-	parameter ARRAY_W_W = 4, //Строк в массиве весов
-	parameter ARRAY_W_L = 4, //Столбцов в массиве весов
-	parameter ARRAY_A_W = 4, //Строк в массиве данных
-	parameter ARRAY_A_L = 4) //Столбцов в массиве данных
+    parameter ARRAY_MAX_W = 10, //Максимальное число строк в систолическом массиве
+    parameter ARRAY_MAX_L = 10) //Максимальное число столбцов в систолическом массиве
 (   input 															clk,
     input 															reset_n,
     input 															weights_load,
-	input 					[0:ARRAY_A_W-1]		[DATA_WIDTH-1:0] 	input_data,
-	input [0:ARRAY_W_W-1]	[0:ARRAY_W_L-1] 	[DATA_WIDTH-1:0] 	weight_data,
+	input										[15:0]				array_w_l,
+	input 					[0:ARRAY_MAX_L-1]	[DATA_WIDTH-1:0] 	input_data,
+	input [0:ARRAY_MAX_W-1]	[0:ARRAY_MAX_L-1] 	[DATA_WIDTH-1:0] 	weight_data,
 
-    output 					[0:ARRAY_W_W-1] 	[2*DATA_WIDTH-1:0] 	output_data
+    output reg				[0:ARRAY_MAX_W-1] 	[2*DATA_WIDTH-1:0] 	output_data
 );
 
-wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [2*DATA_WIDTH-1:0] temp_output_data;
-wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0] propagate_module;
+wire [0:ARRAY_MAX_W-1] [0:ARRAY_MAX_L-1] [2*DATA_WIDTH-1:0] temp_output_data;
+wire [0:ARRAY_MAX_W-1] [0:ARRAY_MAX_L-1] [DATA_WIDTH-1:0] propagate_module;
 
 genvar i;
 genvar j;
 genvar t;
 // Генерация массива вычислительных ячеек
 generate
-	for(i = 0; i < ARRAY_W_W; i = i + 1) begin : generate_array_proc
-		 for (j = 0; j < ARRAY_W_L; j = j + 1) begin : generate_array_proc2
+	for(i = 0; i < ARRAY_MAX_W; i = i + 1) begin : generate_array_proc
+		 for (j = 0; j < ARRAY_MAX_L; j = j + 1) begin : generate_array_proc2
 		 if ((i == 0) && (j == 0)) // i - строка, j - столбец
 		 begin
 			  sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst ( 
@@ -82,8 +81,10 @@ endgenerate
 
 // Генерация связей для выходных данных
 generate
-	for (t=0;t<ARRAY_W_W;t=t+1) begin: output_prop
-		assign output_data[t] = temp_output_data[t][ARRAY_W_L-1];
+	for (t=0;t<ARRAY_MAX_W;t=t+1) begin: output_prop
+		always @(posedge clk) begin
+			output_data[t] = temp_output_data[t][array_w_l - 1];
+		end
 	end
 endgenerate
 
