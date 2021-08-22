@@ -32,11 +32,12 @@ end
 
 genvar i;
 generate
-    for (i = 0; i < ARRAY_MAX_W; i++)
+    for (i = 0; i < ARRAY_MAX_W; i++) begin : generate_weight_data
         if (i < ARRAY_W)
             assign weight_data[i] = ({'b0, parameter_data[i]}) << (DATA_WIDTH * (ARRAY_MAX_L - ARRAY_L));
         else
             assign weight_data[i] = 'b0;
+	 end
 endgenerate
 
 integer ii, jj;

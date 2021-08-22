@@ -26,13 +26,11 @@ add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/re
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/out_data
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/output_wire
 #
-#
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/reset_n_basic
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/first_none
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/last
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/cur
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/cnt
-#
 #
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_b_max
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_w_max
@@ -40,7 +38,6 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/o
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_sys_array
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/output_sys_array
 #add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/systolic_array/temp_output_data
-#
 #
 #add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/control_sr_read
 #add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/control_sr_write

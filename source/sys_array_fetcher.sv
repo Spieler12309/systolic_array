@@ -45,7 +45,7 @@ reg [0:ARRAY_MAX_L-1] [0:ARRAY_MAX_A_L-1] [DATA_WIDTH-1:0] input_data_b_max;
 
 reg  load_params;
 
-wire en;
+//wire en;
 wire [0:ARRAY_MAX_L-1] [DATA_WIDTH-1:0] input_sys_array;
 wire [0:ARRAY_MAX_L-1] [DATA_WIDTH-1:0] empty_wire_reads;
 wire [0:ARRAY_MAX_L-1] [0:ARRAY_MAX_A_L-1] [DATA_WIDTH-1:0] empty_wire2_reads;
@@ -89,7 +89,7 @@ generate
             .ctrl_code(control_sr_read[i]),
             .data_in(input_data_b_max[i]),
             .data_write(empty_wire_reads[i]),
-            .en(en),
+            //.en(en),
             .data_read(input_sys_array[i]),
             .data_out(empty_wire2_reads[i])
         );
@@ -104,7 +104,7 @@ generate
             .ctrl_code(control_sr_write[i]),
             .data_in(empty_wire_writes[i]),
             .data_write(output_sys_array[i]),
-            .en(en),
+            //.en(en),
             .data_read(empty_wire2_writes[i]),
             .data_out(output_wire[i])
         );
@@ -181,7 +181,7 @@ begin
         fetch_len <= 'b0;
         reset_n_basic <= 1'b1;
     end
-    else if(en && start_comp_split) begin // Получено разбиение матриц на подматрицы
+    else if(/*en && */start_comp_split) begin // Получено разбиение матриц на подматрицы
         cur <= first_none;
         cnt <= 15'd0;
         len_w_l <= 'b0;
@@ -189,7 +189,7 @@ begin
         len_a_l <= 'b0;
         len_a_w <= 'b0;
     end
-    else if (en && cur >= 0 && cur < last) begin // Начат процесс вычисления подматриц
+    else if (/*en && */cur >= 0 && cur < last) begin // Начат процесс вычисления подматриц
         if (cnt == 0) begin // Задание сигналова на первом такте вычислений
             len_w_l <= (split_out_data[cur].A_L_1 - split_out_data[cur].A_L_0 + 1);
             len_w_w <= (split_out_data[cur].A_W_1 - split_out_data[cur].A_W_0 + 1);
