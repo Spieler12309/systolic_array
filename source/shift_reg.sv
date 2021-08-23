@@ -8,7 +8,7 @@ parameter LENGTH=4)
 	input [0:LENGTH-1] [DATA_WIDTH-1:0] data_in,
 	input [DATA_WIDTH-1:0] data_write,
 
-    output reg en,
+    //output reg en,
 	output reg [DATA_WIDTH-1:0] data_read,
 	output reg [0:LENGTH-1] [DATA_WIDTH-1:0] data_out
 );
@@ -19,6 +19,7 @@ localparam REG_UPLOAD = 0,
     REG_READ = 3; //Gray coding of states
 
 reg [0:LENGTH-1] [DATA_WIDTH-1:0] contents;
+reg en;
 
 integer i;
 always @(posedge clk)

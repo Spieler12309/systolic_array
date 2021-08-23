@@ -23,7 +23,7 @@ reg [15:0] cnt; // Счетчик
 reg [ARRAY_A_W-1:0] [1:0] control_sr_read; // Контрольные сигналы регистра чтения
 reg [ARRAY_W_W-1:0] [1:0] control_sr_write; // Контрольные сигналы регистра записи
 
-wire en;
+reg en;
 wire [0:ARRAY_A_W-1] [DATA_WIDTH-1:0] input_sys_array;
 wire [0:ARRAY_A_W-1] [DATA_WIDTH-1:0] empty_wire_reads;
 wire [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH-1:0] empty_wire2_reads;
@@ -52,7 +52,7 @@ generate
             //.data_in(transposed_b[i]),
             .data_in(input_data_b[i]),
             .data_write(empty_wire_reads[i]),
-            .en(en),
+            //.en(en),
             .data_read(input_sys_array[i]),
             .data_out(empty_wire2_reads[i])
         );
@@ -67,7 +67,7 @@ generate
             .ctrl_code(control_sr_write[i]),
             .data_in(empty_wire_writes[i]),
             .data_write(output_sys_array[i]),
-            .en(en),
+            //.en(en),
             .data_read(empty_wire2_writes[i]),
             .data_out(output_wire[i])
         );
@@ -94,6 +94,7 @@ begin
         control_sr_read <= {ARRAY_A_W*2{1'b0}};
         control_sr_write <= {ARRAY_W_W*2{1'b0}};
         ready <= 1'b0;
+        en <= 1'b1;
     end
     else if(en && start_comp) begin // Начало вычислений
         cnt <= 15'd1;

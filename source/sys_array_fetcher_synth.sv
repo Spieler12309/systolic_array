@@ -1,24 +1,25 @@
-`timescale 1 ns / 100 ps
-
-module tb_sys_array_fetcher
+module sys_array_fetcher_synth
 #(
 	parameter DATA_WIDTH = 8,
 
 	parameter ARRAY_W_W = 20, //Строк в массиве весов
 	parameter ARRAY_W_L = 10, //Столбцов в массиве весов
 	parameter ARRAY_A_W = 10, //Строк в массиве данных
-	parameter ARRAY_A_L = 10  //Столбцов в массиве данных
-);
-	
-reg clk, reset_n, load_params, start_comp;
+	parameter ARRAY_A_L = 10 //Столбцов в массиве данных
+)
 
-reg [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0] input_data_a;
-reg [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH-1:0] input_data_b; 
+(   input  clk,
+    input  reset_n,
+    input load_params,
+    input  start_comp, 
 
-wire ready;
+    output reg ready,
+    output wire rd);
+
+wire [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH-1:0] input_data_b;
+wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0] input_data_a;
+
 wire [0:ARRAY_W_W-1] [0:ARRAY_A_L-1] [2*DATA_WIDTH-1:0] out_data;
-wire [15:0] cnt;
-wire div_clk;
 
 sys_array_fetcher 
 #(.DATA_WIDTH(DATA_WIDTH),
@@ -29,19 +30,13 @@ sys_array_fetcher
 sys_array_fetcher0 (
 	.clk(clk),
 	.reset_n(reset_n),
-  .load_params(load_params),
+    .load_params(load_params),
   .start_comp(start_comp),
   .input_data_w(input_data_a),
   .input_data_b(input_data_b),
   .ready(ready),
   .out_data(out_data)
 );
-
-initial $dumpvars;
-initial begin
-    clk = 0;
-    forever #10 clk=!clk;
-end
 
 genvar i, j;
 reg [DATA_WIDTH-1:0] roma [ARRAY_W_W*ARRAY_W_L-1:0];
@@ -68,23 +63,6 @@ generate
     end
 endgenerate
 
-initial
-    begin
-        reset_n=0; load_params = 0;
-        #20; reset_n=1;
-        #20;
-        load_params = 1'b1;
-        #20;
-        load_params = 1'b0;
-        #20;
-        start_comp = 1'b1;
-        #20;
-        start_comp = 1'b0;
-        #20;
-        while (~ready)
-            #20;
-        #40;
-        $finish;
-            
-    end
+assign rd = &out_data;
+
 endmodule
