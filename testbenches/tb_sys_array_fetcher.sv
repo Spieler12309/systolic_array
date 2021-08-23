@@ -5,13 +5,13 @@ module tb_sys_array_fetcher
 	parameter DATA_WIDTH = 8,
 
 	parameter ARRAY_W_W = 20, //Строк в массиве весов
-	parameter ARRAY_W_L = 15, //Столбцов в массиве весов
+	parameter ARRAY_W_L = 10, //Столбцов в массиве весов
 
-	parameter ARRAY_A_W = 15, //Строк в массиве данных
-	parameter ARRAY_A_L = 16, //Столбцов в массиве данных
+	parameter ARRAY_A_W = 10, //Строк в массиве данных
+	parameter ARRAY_A_L = 10, //Столбцов в массиве данных
 
-    parameter ARRAY_MAX_W = 8, //Максимальное число строк в систолическом массиве
-    parameter ARRAY_MAX_L = 8, //Максимальное число столбцов в систолическом массиве
+    parameter ARRAY_MAX_W = 10, //Максимальное число строк в систолическом массиве
+    parameter ARRAY_MAX_L = 10, //Максимальное число столбцов в систолическом массиве
 
     parameter ARRAY_MAX_A_L = 10,
 

@@ -3,14 +3,14 @@ module sys_array_fetcher_synth
 #(
 	parameter DATA_WIDTH = 8,
 
-	parameter ARRAY_W_W = 20, //Строк в массиве весов
-	parameter ARRAY_W_L = 15, //Столбцов в массиве весов
+	parameter ARRAY_W_W = 10, //Строк в массиве весов
+	parameter ARRAY_W_L = 10, //Столбцов в массиве весов
 
 	parameter ARRAY_A_W = 15, //Строк в массиве данных
-	parameter ARRAY_A_L = 16, //Столбцов в массиве данных
+	parameter ARRAY_A_L = 15, //Столбцов в массиве данных
 
-    parameter ARRAY_MAX_W = 8, //Максимальное число строк в систолическом массиве
-    parameter ARRAY_MAX_L = 8, //Максимальное число столбцов в систолическом массиве
+    parameter ARRAY_MAX_W = 10, //Максимальное число строк в систолическом массиве
+    parameter ARRAY_MAX_L = 10, //Максимальное число столбцов в систолическом массиве
 
     parameter ARRAY_MAX_A_L = 10,
 
@@ -20,7 +20,8 @@ module sys_array_fetcher_synth
     input  reset_n,
     input  start_comp, 
 
-    output reg ready);
+    output reg ready,
+    output rd);
 
 wire [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH-1:0] input_data_b;
 wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0] input_data_a;
@@ -71,5 +72,7 @@ generate
 	    end
     end
 endgenerate
+
+assign rd = &out_data;
 
 endmodule
