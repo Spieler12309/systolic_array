@@ -18,7 +18,7 @@ sys_array_basic #(.DATA_WIDTH(DATA_WIDTH), .ARRAY_MAX_W(ARRAY_MAX_W), .ARRAY_MAX
 	.clk(clk),
 	.reset_n(reset_n),
 	.weights_load(param_load),
-    .ARRAY_W_L(ARRAY_L -1 ),
+    .array_w_l(ARRAY_L -1 ),
 	.weight_data(weight_data),
 	.input_data(input_module),
 	.output_data(out_module)
