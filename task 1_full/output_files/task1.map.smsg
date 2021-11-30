@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at data_to_segments.sv(29): always construct contains both blocking and non-blocking assignments File: D:/GitHub/systolic_array/task 1/source/data_to_segments.sv Line: 29

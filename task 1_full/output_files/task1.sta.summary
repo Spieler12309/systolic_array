@@ -1,0 +1,113 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -7.075
+TNS   : -177.584
+
+Type  : Slow 1200mV 85C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -2.242
+TNS   : -10.423
+
+Type  : Slow 1200mV 85C Model Setup 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : -0.908
+TNS   : -1.467
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : 0.453
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : 0.454
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -104.811
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -1.487
+TNS   : -11.896
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : -1.487
+TNS   : -4.461
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -6.357
+TNS   : -156.901
+
+Type  : Slow 1200mV 0C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -2.006
+TNS   : -9.253
+
+Type  : Slow 1200mV 0C Model Setup 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : -0.734
+TNS   : -1.168
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : 0.403
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -104.579
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -1.487
+TNS   : -11.896
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : -1.487
+TNS   : -4.461
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -2.486
+TNS   : -44.557
+
+Type  : Fast 1200mV 0C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -0.403
+TNS   : -1.364
+
+Type  : Fast 1200mV 0C Model Setup 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : 0.183
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : 0.187
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -68.174
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'read_data:rd1|button_debouncer:deb1|sw_down_o'
+Slack : -1.000
+TNS   : -3.000
+
+------------------------------------------------------------

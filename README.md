@@ -1,1 +1,0 @@
-# systolic_array

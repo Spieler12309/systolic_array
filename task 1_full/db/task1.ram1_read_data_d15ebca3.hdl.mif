@@ -1,0 +1,21 @@
+-- begin_signature
+-- read_data(DATA_WIDTH
+-- 8)
+-- end_signature
+WIDTH=8;
+DEPTH=9;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=BIN;
+
+CONTENT BEGIN
+	8 :	10101010;
+	7 :	10000010;
+	6 :	00010111;
+	5 :	01001011;
+	4 :	11010111;
+	3 :	11010001;
+	2 :	10000011;
+	1 :	01101101;
+	0 :	11001000;
+END;
