@@ -2,148 +2,40 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'clock_divider:cd1|cnt[24]'
-Slack : -8.642
-TNS   : -650.764
-
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -2.829
-TNS   : -72.837
-
-Type  : Slow 1200mV 85C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -2.056
-TNS   : -11.009
-
-Type  : Slow 1200mV 85C Model Setup 'button_debouncer:deb1|sw_down_o'
-Slack : -2.032
-TNS   : -22.848
-
-Type  : Slow 1200mV 85C Model Hold 'clock_divider:cd1|cnt[24]'
-Slack : 0.433
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'button_debouncer:deb1|sw_down_o'
-Slack : 0.453
-TNS   : 0.000
+Slack : -8.042
+TNS   : -1143.599
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : 0.453
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : 0.466
+Slack : 0.434
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -71.402
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clock_divider:cd1|cnt[24]'
-Slack : -1.487
-TNS   : -281.043
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'button_debouncer:deb1|sw_down_o'
-Slack : -1.487
-TNS   : -17.844
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -1.487
-TNS   : -11.896
-
-Type  : Slow 1200mV 0C Model Setup 'clock_divider:cd1|cnt[24]'
-Slack : -7.965
-TNS   : -596.348
+TNS   : -480.327
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -2.438
-TNS   : -62.044
-
-Type  : Slow 1200mV 0C Model Setup 'button_debouncer:deb1|sw_down_o'
-Slack : -1.922
-TNS   : -21.544
-
-Type  : Slow 1200mV 0C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -1.832
-TNS   : -9.681
-
-Type  : Slow 1200mV 0C Model Hold 'clock_divider:cd1|cnt[24]'
-Slack : 0.383
-TNS   : 0.000
+Slack : -7.390
+TNS   : -1040.684
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : 0.401
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'button_debouncer:deb1|sw_down_o'
-Slack : 0.402
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : 0.417
+Slack : 0.383
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -71.402
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clock_divider:cd1|cnt[24]'
-Slack : -1.487
-TNS   : -281.043
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'button_debouncer:deb1|sw_down_o'
-Slack : -1.487
-TNS   : -17.844
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -1.487
-TNS   : -11.896
-
-Type  : Fast 1200mV 0C Model Setup 'clock_divider:cd1|cnt[24]'
-Slack : -3.138
-TNS   : -178.426
+TNS   : -480.327
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -0.657
-TNS   : -7.627
-
-Type  : Fast 1200mV 0C Model Setup 'button_debouncer:deb1|sw_down_o'
-Slack : -0.349
-TNS   : -2.927
-
-Type  : Fast 1200mV 0C Model Setup 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -0.323
-TNS   : -1.020
-
-Type  : Fast 1200mV 0C Model Hold 'clock_divider:cd1|cnt[24]'
-Slack : 0.179
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'button_debouncer:deb1|sw_down_o'
-Slack : 0.186
-TNS   : 0.000
+Slack : -2.805
+TNS   : -318.523
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : 0.186
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : 0.195
+Slack : 0.179
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -52.181
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clock_divider:cd1|cnt[24]'
-Slack : -1.000
-TNS   : -189.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'button_debouncer:deb1|sw_down_o'
-Slack : -1.000
-TNS   : -12.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'data_to_segments:ds1|clock_divider:cd1|cnt[16]'
-Slack : -1.000
-TNS   : -8.000
+TNS   : -344.948
 
 ------------------------------------------------------------

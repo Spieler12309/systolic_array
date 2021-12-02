@@ -1,5 +1,5 @@
 Analysis & Synthesis report for task1
-Tue Nov 30 15:26:51 2021
+Fri Dec 03 00:14:44 2021
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -14,20 +14,21 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis DSP Block Usage Summary
-  9. General Register Statistics
- 10. Inverted Register Statistics
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
  11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: read_data:rd1
- 13. Parameter Settings for User Entity Instance: read_data:rd1|button_debouncer:deb1
- 14. Parameter Settings for User Entity Instance: sys_array_cell:sac1
- 15. Parameter Settings for User Entity Instance: data_to_segments:ds1|clock_divider:cd1
+ 12. Parameter Settings for User Entity Instance: button_debouncer:bd1
+ 13. Parameter Settings for User Entity Instance: button_debouncer:bd2
+ 14. Parameter Settings for User Entity Instance: read_data:rd1
+ 15. Parameter Settings for User Entity Instance: sys_array_cell:sac1
  16. Parameter Settings for Inferred Entity Instance: sys_array_cell:sac1|lpm_mult:Mult0
  17. lpm_mult Parameter Settings by Entity Instance
  18. Port Connectivity Checks: "sys_array_cell:sac1"
- 19. Port Connectivity Checks: "read_data:rd1|button_debouncer:deb1"
- 20. Post-Synthesis Netlist Statistics for Top Partition
- 21. Elapsed Time Per Partition
- 22. Analysis & Synthesis Messages
+ 19. Port Connectivity Checks: "button_debouncer:bd2"
+ 20. Port Connectivity Checks: "button_debouncer:bd1"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
 
 
 
@@ -53,16 +54,16 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 30 15:26:51 2021       ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 03 00:14:44 2021       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; task1                                       ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 133                                         ;
-;     Total combinational functions  ; 132                                         ;
-;     Dedicated logic registers      ; 72                                          ;
-; Total registers                    ; 72                                          ;
-; Total pins                         ; 22                                          ;
+; Total logic elements               ; 156                                         ;
+;     Total combinational functions  ; 156                                         ;
+;     Dedicated logic registers      ; 96                                          ;
+; Total registers                    ; 96                                          ;
+; Total pins                         ; 23                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 1                                           ;
@@ -169,35 +170,28 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                              ;
-+----------------------------------+-----------------+---------------------------------------------+------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                                   ; File Name with Absolute Path                                           ; Library ;
-+----------------------------------+-----------------+---------------------------------------------+------------------------------------------------------------------------+---------+
-; source/top.sv                    ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/top.sv                          ;         ;
-; source/sys_array_cell.sv         ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/sys_array_cell.sv               ;         ;
-; source/seg7_tohex.sv             ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/seg7_tohex.sv                   ;         ;
-; source/clock_divider.sv          ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/clock_divider.sv                ;         ;
-; source/data_to_segments.sv       ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/data_to_segments.sv             ;         ;
-; source/read_data.sv              ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/read_data.sv                    ;         ;
-; source/button_debouncer.sv       ; yes             ; User SystemVerilog HDL File                 ; D:/GitHub/systolic_array/task 1/source/button_debouncer.sv             ;         ;
-; data/result.hex                  ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; D:/GitHub/systolic_array/task 1/data/result.hex                        ;         ;
-; data/prop.hex                    ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; D:/GitHub/systolic_array/task 1/data/prop.hex                          ;         ;
-; data/param.hex                   ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; D:/GitHub/systolic_array/task 1/data/param.hex                         ;         ;
-; data/input.hex                   ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; D:/GitHub/systolic_array/task 1/data/input.hex                         ;         ;
-; lpm_mult.tdf                     ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mult.tdf    ;         ;
-; aglobal181.inc                   ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc  ;         ;
-; lpm_add_sub.inc                  ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc ;         ;
-; multcore.inc                     ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/multcore.inc    ;         ;
-; bypassff.inc                     ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc    ;         ;
-; altshift.inc                     ; yes             ; Megafunction                                ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc    ;         ;
-; db/mult_aat.tdf                  ; yes             ; Auto-Generated Megafunction                 ; D:/GitHub/systolic_array/task 1/db/mult_aat.tdf                        ;         ;
-+----------------------------------+-----------------+---------------------------------------------+------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                               ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                           ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------+---------+
+; source/seven_segment_4_digits.sv ; yes             ; User SystemVerilog HDL File  ; D:/GitHub/systolic_array/task 1_full/source/seven_segment_4_digits.sv  ;         ;
+; source/top.sv                    ; yes             ; User SystemVerilog HDL File  ; D:/GitHub/systolic_array/task 1_full/source/top.sv                     ;         ;
+; source/sys_array_cell.sv         ; yes             ; User SystemVerilog HDL File  ; D:/GitHub/systolic_array/task 1_full/source/sys_array_cell.sv          ;         ;
+; source/read_data.sv              ; yes             ; User SystemVerilog HDL File  ; D:/GitHub/systolic_array/task 1_full/source/read_data.sv               ;         ;
+; source/button_debouncer.sv       ; yes             ; User SystemVerilog HDL File  ; D:/GitHub/systolic_array/task 1_full/source/button_debouncer.sv        ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mult.tdf    ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc  ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.inc ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/multcore.inc    ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/bypassff.inc    ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; d:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altshift.inc    ;         ;
+; db/mult_aat.tdf                  ; yes             ; Auto-Generated Megafunction  ; D:/GitHub/systolic_array/task 1_full/db/mult_aat.tdf                   ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -205,48 +199,47 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 133       ;
+; Estimated Total logic elements              ; 156       ;
 ;                                             ;           ;
-; Total combinational functions               ; 132       ;
+; Total combinational functions               ; 156       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 52        ;
-;     -- 3 input functions                    ; 32        ;
-;     -- <=2 input functions                  ; 48        ;
+;     -- 4 input functions                    ; 55        ;
+;     -- 3 input functions                    ; 34        ;
+;     -- <=2 input functions                  ; 67        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 87        ;
-;     -- arithmetic mode                      ; 45        ;
+;     -- normal mode                          ; 96        ;
+;     -- arithmetic mode                      ; 60        ;
 ;                                             ;           ;
-; Total registers                             ; 72        ;
-;     -- Dedicated logic registers            ; 72        ;
+; Total registers                             ; 96        ;
+;     -- Dedicated logic registers            ; 96        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 22        ;
+; I/O pins                                    ; 23        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 1         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 61        ;
-; Total fan-out                               ; 651       ;
-; Average fan-out                             ; 2.60      ;
+; Maximum fan-out                             ; 96        ;
+; Total fan-out                               ; 813       ;
+; Average fan-out                             ; 2.71      ;
 +---------------------------------------------+-----------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                               ;
-+------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------+--------------+
-; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                             ; Entity Name      ; Library Name ;
-+------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------+--------------+
-; |top                               ; 132 (17)            ; 72 (0)                    ; 0           ; 1            ; 1       ; 0         ; 22   ; 0            ; |top                                                            ; top              ; work         ;
-;    |data_to_segments:ds1|          ; 47 (23)             ; 25 (8)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|data_to_segments:ds1                                       ; data_to_segments ; work         ;
-;       |clock_divider:cd1|          ; 17 (17)             ; 17 (17)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|data_to_segments:ds1|clock_divider:cd1                     ; clock_divider    ; work         ;
-;       |seg7_tohex:sh1|             ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|data_to_segments:ds1|seg7_tohex:sh1                        ; seg7_tohex       ; work         ;
-;    |read_data:rd1|                 ; 42 (17)             ; 23 (3)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|read_data:rd1                                              ; read_data        ; work         ;
-;       |button_debouncer:deb1|      ; 25 (25)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|read_data:rd1|button_debouncer:deb1                        ; button_debouncer ; work         ;
-;    |sys_array_cell:sac1|           ; 26 (26)             ; 24 (24)                   ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1                                        ; sys_array_cell   ; work         ;
-;       |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1|lpm_mult:Mult0                         ; lpm_mult         ; work         ;
-;          |mult_aat:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1|lpm_mult:Mult0|mult_aat:auto_generated ; mult_aat         ; work         ;
-+------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                     ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------------+--------------+
+; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                             ; Entity Name            ; Library Name ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------------+--------------+
+; |top                               ; 156 (18)            ; 96 (0)                    ; 0           ; 1            ; 1       ; 0         ; 23   ; 0            ; |top                                                            ; top                    ; work         ;
+;    |button_debouncer:bd1|          ; 26 (26)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|button_debouncer:bd1                                       ; button_debouncer       ; work         ;
+;    |button_debouncer:bd2|          ; 26 (26)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|button_debouncer:bd2                                       ; button_debouncer       ; work         ;
+;    |read_data:rd1|                 ; 17 (17)             ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|read_data:rd1                                              ; read_data              ; work         ;
+;    |seven_segment_4_digits:ss4d1|  ; 43 (43)             ; 29 (29)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|seven_segment_4_digits:ss4d1                               ; seven_segment_4_digits ; work         ;
+;    |sys_array_cell:sac1|           ; 26 (26)             ; 24 (24)                   ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1                                        ; sys_array_cell         ; work         ;
+;       |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1|lpm_mult:Mult0                         ; lpm_mult               ; work         ;
+;          |mult_aat:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |top|sys_array_cell:sac1|lpm_mult:Mult0|mult_aat:auto_generated ; mult_aat               ; work         ;
++------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------+------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -268,43 +261,450 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
 
 
++-----------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                ;
++------------------------------------------+----------------------------------------+
+; Register name                            ; Reason for Removal                     ;
++------------------------------------------+----------------------------------------+
+; read_data:rd1|data_result[1][0]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][14]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][13]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][12]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][11]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][9]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][8]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][6]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][4]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][3]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[2][2]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][1]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[2][0]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][14]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][13]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][12]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][11]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][9]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][8]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][6]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[3][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][4]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][3]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][2]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][1]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[3][0]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][14]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][13]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][12]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][11]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][10]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][9]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][8]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][7]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][4]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][3]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[4][2]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][1]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[4][0]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[5][14]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[5][13]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][12]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][11]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][9]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][8]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][7]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][4]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[5][3]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][2]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[5][1]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[5][0]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][14]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][13]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][12]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][11]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[6][9]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][8]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[6][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[6][5]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][4]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[6][3]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][2]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[6][1]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[6][0]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][14]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][13]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][12]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][11]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][9]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][8]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][4]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[7][3]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][2]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][1]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[7][0]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][1]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][2]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][3]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][4]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][5]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][8]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][9]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][10]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][11]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][12]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[1][13]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][14]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[1][15]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][0]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][1]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][2]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][3]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][4]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][5]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][6]          ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][7]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][8]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][9]          ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][10]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][11]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][12]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][13]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_result[0][14]         ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_result[0][15]         ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][0]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][2]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][3]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][4]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][5]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][6]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][7]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[7][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[7][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][0]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][2]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][3]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][5]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][6]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][7]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[6][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[6][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][0]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[5][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[5][2]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[5][3]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[5][5]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][6]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[5][7]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[5][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][0]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[4][1]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][2]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][3]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[4][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[4][5]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[4][6]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][7]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[4][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[4][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][0]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[3][2]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][3]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[3][5]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[3][6]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][7]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[3][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][0]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][2]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][3]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][5]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][6]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][7]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[2][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[2][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][0]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[1][1]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][2]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][3]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[1][5]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[1][6]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][7]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[1][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][0]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[0][1]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[0][2]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][3]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[0][4]            ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_prop[0][5]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][6]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][7]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][8]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][9]            ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][10]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][11]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][12]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][13]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][14]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_prop[0][15]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][0]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][1]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[7][2]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][3]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][4]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][6]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[7][7]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[6][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[6][1]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[6][2]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[6][3]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[6][4]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[6][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[6][6]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[6][7]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[5][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[5][1]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[5][2]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[5][3]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[5][4]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[5][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[5][6]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[5][7]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[4][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[4][1]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[4][2]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[4][3]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[4][4]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[4][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[4][6]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[4][7]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[3][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[3][1]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[3][2]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[3][3]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[3][4]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[3][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[3][6]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[3][7]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[2][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[2][1]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[2][2]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[2][3]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[2][4]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[2][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[2][6]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[2][7]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][0]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][1]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[1][2]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][3]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][4]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[1][5]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][6]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[1][7]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][0]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][1]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][2]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][3]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[0][4]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][5]           ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_param[0][6]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_param[0][7]           ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[7][0]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[7][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[7][2]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[7][3]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[7][4]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[7][5]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[7][6]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[7][7]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[6][0]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[6][1]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[6][2]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[6][3]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[6][4]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[6][5]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[6][6]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[6][7]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[5][0]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[5][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[5][2]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[5][3]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[5][4]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[5][5]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[5][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[5][7]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[4][0]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[4][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[4][2]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[4][3]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[4][4]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[4][5]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[4][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[4][7]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[3][0]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[3][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[3][2]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[3][3]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[3][4]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[3][5]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[3][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[3][7]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][0]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][2]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][3]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[2][4]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][5]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[2][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[2][7]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][0]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][1]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][2]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][3]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[1][4]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][5]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[1][7]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[0][0]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[0][1]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[0][2]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[0][3]             ; Stuck at GND due to stuck port data_in ;
+; read_data:rd1|data_inp[0][4]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[0][5]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[0][6]             ; Stuck at VCC due to stuck port data_in ;
+; read_data:rd1|data_inp[0][7]             ; Stuck at VCC due to stuck port data_in ;
+; seven_segment_4_digits:ss4d1|abcdefgh[7] ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 385  ;                                        ;
++------------------------------------------+----------------------------------------+
+
+
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 72    ;
-; Number of registers using Synchronous Clear  ; 32    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 3     ;
+; Total registers                              ; 96    ;
+; Number of registers using Synchronous Clear  ; 76    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 24    ;
+; Number of registers using Clock Enable       ; 37    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; data_to_segments:ds1|digit[1]          ; 11      ;
-; data_to_segments:ds1|digit[2]          ; 10      ;
-; data_to_segments:ds1|digit[3]          ; 12      ;
-; Total number of inverted registers = 3 ;         ;
-+----------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sys_array_cell:sac1|out_data[14]         ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|seven_segment_4_digits:ss4d1|abcdefgh[0] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|button_debouncer:bd2|key_count[1]        ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|button_debouncer:bd1|key_count[1]        ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|seven_segment_4_digits:ss4d1|digit[2]    ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |top|seven_segment_4_digits:ss4d1|digit[1]    ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|sys_array_cell:sac1|par[4]               ;
+; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |top|sys_array_cell:sac1|par[6]               ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |top|seven_segment_4_digits:ss4d1|Mux3        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sys_array_cell:sac1|out_data[15] ;
-; 16:1               ; 4 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; Yes        ; |top|data_to_segments:ds1|code[3]     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top|sys_array_cell:sac1|par[4]       ;
-; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |top|sys_array_cell:sac1|par[0]       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: button_debouncer:bd1 ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; CNT_WIDTH      ; 16    ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: button_debouncer:bd2 ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; CNT_WIDTH      ; 16    ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +------------------------------------------------------------+
@@ -317,16 +717,6 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: read_data:rd1|button_debouncer:deb1 ;
-+----------------+-------+---------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                    ;
-+----------------+-------+---------------------------------------------------------+
-; CNT_WIDTH      ; 16    ; Signed Integer                                          ;
-+----------------+-------+---------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: sys_array_cell:sac1 ;
 +----------------+-------+-----------------------------------------+
@@ -334,16 +724,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+-----------------------------------------+
 ; DATA_WIDTH     ; 8     ; Signed Integer                          ;
 +----------------+-------+-----------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: data_to_segments:ds1|clock_divider:cd1 ;
-+----------------+-------+------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                       ;
-+----------------+-------+------------------------------------------------------------+
-; DIVIDE_LEN     ; 17    ; Signed Integer                                             ;
-+----------------+-------+------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -402,25 +782,33 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "sys_array_cell:sac1"                                                                                                    ;
-+------------+---------+------------------+----------------------------------------------------------------------------------------------------------+
-; Port       ; Type    ; Severity         ; Details                                                                                                  ;
-+------------+---------+------------------+----------------------------------------------------------------------------------------------------------+
-; prop_param ; Unknown ; Critical Warning ; Named port was not declared by the instantiated entity                                                   ;
-; prop_par   ; Output  ; Warning          ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+------------+---------+------------------+----------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------+
+; Port Connectivity Checks: "sys_array_cell:sac1"         ;
++------------+--------+----------+------------------------+
+; Port       ; Type   ; Severity ; Details                ;
++------------+--------+----------+------------------------+
+; prop_param ; Output ; Info     ; Explicitly unconnected ;
++------------+--------+----------+------------------------+
 
 
-+-----------------------------------------------------------------+
-; Port Connectivity Checks: "read_data:rd1|button_debouncer:deb1" ;
-+------------+--------+----------+--------------------------------+
-; Port       ; Type   ; Severity ; Details                        ;
-+------------+--------+----------+--------------------------------+
-; rst_i      ; Input  ; Info     ; Explicitly unconnected         ;
-; sw_state_o ; Output ; Info     ; Explicitly unconnected         ;
-; sw_up_o    ; Output ; Info     ; Explicitly unconnected         ;
-+------------+--------+----------+--------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "button_debouncer:bd2"                                                                                           ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                  ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; key_state_o ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; key_up_o    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "button_debouncer:bd1"                                                                                           ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                                                  ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; key_state_o ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; key_up_o    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -428,28 +816,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 22                          ;
-; cycloneiii_ff         ; 72                          ;
-;     CLR               ; 3                           ;
-;     ENA               ; 8                           ;
-;     ENA SCLR          ; 16                          ;
-;     SCLR              ; 16                          ;
-;     plain             ; 29                          ;
-; cycloneiii_lcell_comb ; 142                         ;
-;     arith             ; 45                          ;
-;         2 data inputs ; 36                          ;
-;         3 data inputs ; 9                           ;
-;     normal            ; 97                          ;
+; boundary_port         ; 23                          ;
+; cycloneiii_ff         ; 96                          ;
+;     ENA               ; 13                          ;
+;     ENA SCLR          ; 23                          ;
+;     ENA SLD           ; 1                           ;
+;     SCLR              ; 53                          ;
+;     plain             ; 6                           ;
+; cycloneiii_lcell_comb ; 162                         ;
+;     arith             ; 60                          ;
+;         2 data inputs ; 52                          ;
+;         3 data inputs ; 8                           ;
+;     normal            ; 102                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 14                          ;
-;         2 data inputs ; 6                           ;
-;         3 data inputs ; 23                          ;
-;         4 data inputs ; 52                          ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 11                          ;
+;         3 data inputs ; 26                          ;
+;         4 data inputs ; 55                          ;
 ; cycloneiii_mac_mult   ; 1                           ;
 ; cycloneiii_mac_out    ; 1                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 5.00                        ;
-; Average LUT depth     ; 2.35                        ;
+; Average LUT depth     ; 2.26                        ;
 +-----------------------+-----------------------------+
 
 
@@ -468,66 +856,33 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue Nov 30 15:26:31 2021
+    Info: Processing started: Fri Dec 03 00:14:31 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off task1 -c task1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file source/seven_segment_4_digits.sv
+    Info (12023): Found entity 1: seven_segment_4_digits File: D:/GitHub/systolic_array/task 1_full/source/seven_segment_4_digits.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file source/top.sv
-    Info (12023): Found entity 1: top File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 1
+    Info (12023): Found entity 1: top File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file source/sys_array_cell.sv
-    Info (12023): Found entity 1: sys_array_cell File: D:/GitHub/systolic_array/task 1/source/sys_array_cell.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file source/shift_reg.sv
-    Info (12023): Found entity 1: shift_reg File: D:/GitHub/systolic_array/task 1/source/shift_reg.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file source/seg7_tohex.sv
-    Info (12023): Found entity 1: seg7_tohex File: D:/GitHub/systolic_array/task 1/source/seg7_tohex.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file source/clock_divider.sv
-    Info (12023): Found entity 1: clock_divider File: D:/GitHub/systolic_array/task 1/source/clock_divider.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file source/data_to_segments.sv
-    Info (12023): Found entity 1: data_to_segments File: D:/GitHub/systolic_array/task 1/source/data_to_segments.sv Line: 1
+    Info (12023): Found entity 1: sys_array_cell File: D:/GitHub/systolic_array/task 1_full/source/sys_array_cell.sv Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file source/read_data.sv
-    Info (12023): Found entity 1: read_data File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 1
+    Info (12023): Found entity 1: read_data File: D:/GitHub/systolic_array/task 1_full/source/read_data.sv Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file source/button_debouncer.sv
-    Info (12023): Found entity 1: button_debouncer File: D:/GitHub/systolic_array/task 1/source/button_debouncer.sv Line: 1
+    Info (12023): Found entity 1: button_debouncer File: D:/GitHub/systolic_array/task 1_full/source/button_debouncer.sv Line: 2
 Info (12127): Elaborating entity "top" for the top level hierarchy
-Warning (10034): Output port "buzzer" at top.sv(5) has no driver File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 5
-Info (12128): Elaborating entity "read_data" for hierarchy "read_data:rd1" File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 30
-Warning (10850): Verilog HDL warning at read_data.sv(37): number of words (10) in memory file does not match the number of elements in the address range [0:8] File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 37
-Warning (10850): Verilog HDL warning at read_data.sv(41): number of words (10) in memory file does not match the number of elements in the address range [0:8] File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 41
-Warning (10850): Verilog HDL warning at read_data.sv(45): number of words (10) in memory file does not match the number of elements in the address range [0:8] File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 45
-Warning (10850): Verilog HDL warning at read_data.sv(49): number of words (8) in memory file does not match the number of elements in the address range [0:8] File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 49
-Warning (10230): Verilog HDL assignment warning at read_data.sv(58): truncated value with size 32 to match size of target (3) File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 58
-Warning (10030): Net "data_inp.data_a" at read_data.sv(26) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 26
-Warning (10030): Net "data_inp.waddr_a" at read_data.sv(26) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 26
-Warning (10030): Net "data_param.data_a" at read_data.sv(27) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 27
-Warning (10030): Net "data_param.waddr_a" at read_data.sv(27) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 27
-Warning (10030): Net "data_prop.data_a" at read_data.sv(28) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 28
-Warning (10030): Net "data_prop.waddr_a" at read_data.sv(28) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 28
-Warning (10030): Net "data_result.data_a" at read_data.sv(29) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 29
-Warning (10030): Net "data_result.waddr_a" at read_data.sv(29) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 29
-Warning (10030): Net "data_inp.we_a" at read_data.sv(26) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 26
-Warning (10030): Net "data_param.we_a" at read_data.sv(27) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 27
-Warning (10030): Net "data_prop.we_a" at read_data.sv(28) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 28
-Warning (10030): Net "data_result.we_a" at read_data.sv(29) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 29
-Info (12128): Elaborating entity "button_debouncer" for hierarchy "read_data:rd1|button_debouncer:deb1" File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 25
-Warning (10230): Verilog HDL assignment warning at button_debouncer.sv(40): truncated value with size 32 to match size of target (16) File: D:/GitHub/systolic_array/task 1/source/button_debouncer.sv Line: 40
-Info (12128): Elaborating entity "sys_array_cell" for hierarchy "sys_array_cell:sac1" File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 43
-Info (12128): Elaborating entity "data_to_segments" for hierarchy "data_to_segments:ds1" File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 50
-Info (12128): Elaborating entity "seg7_tohex" for hierarchy "data_to_segments:ds1|seg7_tohex:sh1" File: D:/GitHub/systolic_array/task 1/source/data_to_segments.sv Line: 13
-Info (12128): Elaborating entity "clock_divider" for hierarchy "data_to_segments:ds1|clock_divider:cd1" File: D:/GitHub/systolic_array/task 1/source/data_to_segments.sv Line: 21
-Info (276014): Found 4 instances of uninferred RAM logic
-    Info (276004): RAM logic "read_data:rd1|data_result" is uninferred due to inappropriate RAM size File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 29
-    Info (276004): RAM logic "read_data:rd1|data_prop" is uninferred due to inappropriate RAM size File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 28
-    Info (276004): RAM logic "read_data:rd1|data_inp" is uninferred due to inappropriate RAM size File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 26
-    Info (276004): RAM logic "read_data:rd1|data_param" is uninferred due to inappropriate RAM size File: D:/GitHub/systolic_array/task 1/source/read_data.sv Line: 27
-Critical Warning (127005): Memory depth (16) in the design file differs from memory depth (9) in the Memory Initialization File "D:/GitHub/systolic_array/task 1/db/task1.ram3_read_data_d15ebca3.hdl.mif" -- setting initial value for remaining addresses to 0
-Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "D:/GitHub/systolic_array/task 1/db/task1.ram3_read_data_d15ebca3.hdl.mif" contains "don't care" values -- overwriting them with 0s
-Critical Warning (127005): Memory depth (16) in the design file differs from memory depth (9) in the Memory Initialization File "D:/GitHub/systolic_array/task 1/db/task1.ram2_read_data_d15ebca3.hdl.mif" -- setting initial value for remaining addresses to 0
-Critical Warning (127005): Memory depth (16) in the design file differs from memory depth (9) in the Memory Initialization File "D:/GitHub/systolic_array/task 1/db/task1.ram0_read_data_d15ebca3.hdl.mif" -- setting initial value for remaining addresses to 0
-Critical Warning (127005): Memory depth (16) in the design file differs from memory depth (9) in the Memory Initialization File "D:/GitHub/systolic_array/task 1/db/task1.ram1_read_data_d15ebca3.hdl.mif" -- setting initial value for remaining addresses to 0
+Warning (10034): Output port "buzzer" at top.sv(6) has no driver File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 6
+Info (12128): Elaborating entity "button_debouncer" for hierarchy "button_debouncer:bd1" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 28
+Warning (10230): Verilog HDL assignment warning at button_debouncer.sv(37): truncated value with size 32 to match size of target (16) File: D:/GitHub/systolic_array/task 1_full/source/button_debouncer.sv Line: 37
+Info (12128): Elaborating entity "read_data" for hierarchy "read_data:rd1" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at read_data.sv(43): truncated value with size 32 to match size of target (3) File: D:/GitHub/systolic_array/task 1_full/source/read_data.sv Line: 43
+Info (12128): Elaborating entity "sys_array_cell" for hierarchy "sys_array_cell:sac1" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 72
+Info (12128): Elaborating entity "seven_segment_4_digits" for hierarchy "seven_segment_4_digits:ss4d1" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 82
+Warning (10230): Verilog HDL assignment warning at seven_segment_4_digits.sv(56): truncated value with size 32 to match size of target (2) File: D:/GitHub/systolic_array/task 1_full/source/seven_segment_4_digits.sv Line: 56
 Info (278001): Inferred 1 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "sys_array_cell:sac1|Mult0" File: D:/GitHub/systolic_array/task 1/source/sys_array_cell.sv Line: 26
-Info (12130): Elaborated megafunction instantiation "sys_array_cell:sac1|lpm_mult:Mult0" File: D:/GitHub/systolic_array/task 1/source/sys_array_cell.sv Line: 26
-Info (12133): Instantiated megafunction "sys_array_cell:sac1|lpm_mult:Mult0" with the following parameter: File: D:/GitHub/systolic_array/task 1/source/sys_array_cell.sv Line: 26
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "sys_array_cell:sac1|Mult0" File: D:/GitHub/systolic_array/task 1_full/source/sys_array_cell.sv Line: 29
+Info (12130): Elaborated megafunction instantiation "sys_array_cell:sac1|lpm_mult:Mult0" File: D:/GitHub/systolic_array/task 1_full/source/sys_array_cell.sv Line: 29
+Info (12133): Instantiated megafunction "sys_array_cell:sac1|lpm_mult:Mult0" with the following parameter: File: D:/GitHub/systolic_array/task 1_full/source/sys_array_cell.sv Line: 29
     Info (12134): Parameter "LPM_WIDTHA" = "8"
     Info (12134): Parameter "LPM_WIDTHB" = "8"
     Info (12134): Parameter "LPM_WIDTHP" = "16"
@@ -538,25 +893,26 @@ Info (12133): Instantiated megafunction "sys_array_cell:sac1|lpm_mult:Mult0" wit
     Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_aat.tdf
-    Info (12023): Found entity 1: mult_aat File: D:/GitHub/systolic_array/task 1/db/mult_aat.tdf Line: 28
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+    Info (12023): Found entity 1: mult_aat File: D:/GitHub/systolic_array/task 1_full/db/mult_aat.tdf Line: 28
+Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "buzzer" is stuck at GND File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 5
-    Warning (13410): Pin "segment[7]" is stuck at VCC File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 6
+    Warning (13410): Pin "buzzer" is stuck at GND File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 6
+    Warning (13410): Pin "segment[7]" is stuck at VCC File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 7
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "key_sw[2]" File: D:/GitHub/systolic_array/task 1/source/top.sv Line: 3
-Info (21057): Implemented 157 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 5 input pins
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "key_sw[2]" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 4
+    Warning (15610): No output dependent on input pin "key_sw[3]" File: D:/GitHub/systolic_array/task 1_full/source/top.sv Line: 4
+Info (21057): Implemented 180 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 6 input pins
     Info (21059): Implemented 17 output pins
-    Info (21061): Implemented 134 logic cells
+    Info (21061): Implemented 156 logic cells
     Info (21062): Implemented 1 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 31 warnings
-    Info: Peak virtual memory: 4779 megabytes
-    Info: Processing ended: Tue Nov 30 15:26:51 2021
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:43
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 12 warnings
+    Info: Peak virtual memory: 4764 megabytes
+    Info: Processing ended: Fri Dec 03 00:14:44 2021
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:28
 
 

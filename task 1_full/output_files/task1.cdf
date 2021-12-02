@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE6E22) Path("D:/GitHub/systolic_array/task 1/output_files/") File("task1.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE6E22) Path("D:/GitHub/systolic_array/task 1_full/output_files/") File("task1.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

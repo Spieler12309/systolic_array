@@ -64,15 +64,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "key_sw[1]",
-					"strict" : false
-				},
-				{
-					"name" : "key_sw[3]",
-					"strict" : false
-				},
-				{
 					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset_n",
+					"strict" : false
+				},
+				{
+					"name" : "key_sw[1]",
 					"strict" : false
 				},
 				{
