@@ -15,10 +15,10 @@ vsim -novopt work.tb_sys_array_cell
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/clk
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/reset_n
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/param_load
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weight_load
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/input_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/param_data
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weight_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/out_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_param
 

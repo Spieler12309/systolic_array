@@ -1,11 +1,11 @@
 module sys_array_fetcher
 
 #(
-	parameter DATA_WIDTH = 8,
-	parameter ARRAY_W_W = 2, //Строк в массиве весов
-	parameter ARRAY_W_L = 5, //Столбцов в массиве весов
-	parameter ARRAY_A_W = 5, //Строк в массиве данных
-	parameter ARRAY_A_L = 2) //Столбцов в массиве данных
+	parameter DATA_WIDTH = 8,//Разрядность шины входных данных
+	parameter ARRAY_W_W = 3, //Строк в массиве весов
+	parameter ARRAY_W_L = 4, //Столбцов в массиве весов
+	parameter ARRAY_A_W = 4, //Строк в массиве данных
+	parameter ARRAY_A_L = 3) //Столбцов в массиве данных
 
 (input  clk,
     input  reset_n,
