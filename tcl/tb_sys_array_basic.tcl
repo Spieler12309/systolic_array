@@ -16,12 +16,14 @@ vsim -novopt work.tb_sys_array_basic
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/clk
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/reset_n
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/param_load
+add wave -noupdate -radix decimal sim:/tb_sys_array_basic/ARRAY_W
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/parameter_data
+add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weight_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/input_module
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/out_module
 
 # симуляция и отображение результатов
 run -all
 #wave zoom full
-#WaveRestoreZoom {0 ns} [simtime]
-WaveRestoreZoom {0 ns} {1000 ns} 
+WaveRestoreZoom {0 ns} [simtime]
+#WaveRestoreZoom {0 ns} {1000 ns} 

@@ -7,7 +7,7 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_sys_array_fetcher.sv ../source/sys_array_fetcher.sv ../source/sys_array_basic.sv ../source/sys_array_cell.sv ../source/shift_reg.sv
+vlog +incdir+./ ../testbenches/tb_sys_array_fetcher.sv ../source/sys_array_fetcher.sv ../source/sys_array_basic.sv ../source/sys_array_cell.sv ../source/shift_reg.sv ../source/sys_array_split.sv
 vlog +incdir+./ ../source/fifo/fifo_mem.sv ../source/fifo/memory_array.sv ../source/fifo/read_pointer.sv ../source/fifo/status_signal.sv ../source/fifo/write_pointer.sv
 
 # указываем топовый TestBench
@@ -18,16 +18,17 @@ add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/cl
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/reset_n
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/load_params
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/start_comp
-add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_a
+add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/start_comp_split
+add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_w
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/input_data_b
+add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/split_out_data
 
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/sys_array_fetcher0/ready
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/out_data
 
-# add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/sys_array_fetcher0/data_out
-
 # симуляция и отображение результатов
 run -all
+#run 1000000
 #wave zoom full
 #WaveRestoreZoom {0 ns} [simtime]
 WaveRestoreZoom {0 ns} {1000 ns} 
