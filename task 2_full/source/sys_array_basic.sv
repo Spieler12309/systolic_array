@@ -3,7 +3,7 @@
 // для формирования систолического массива.
 module sys_array_basic
 #(
-    parameter DATA_WIDTH = 8,
+    parameter DATA_WIDTH = 8, //Разрядность шины входных данных
     parameter ARRAY_W_W  = 4, //Количество строк в массиве весов
     parameter ARRAY_W_L  = 4, //Количество столбцов в массиве весов
     parameter ARRAY_A_W  = 4, //Количество строк в массиве данных

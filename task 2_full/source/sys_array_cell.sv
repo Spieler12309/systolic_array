@@ -1,7 +1,7 @@
 //Основной вычислительный модуль систолического массива.
 
 module sys_array_cell
-#(parameter DATA_WIDTH = 8)
+#(parameter DATA_WIDTH = 8) //Разрядность шины входных данных
 (   input                                     clk,
     input                                     reset_n,
     input                                     weight_load,
