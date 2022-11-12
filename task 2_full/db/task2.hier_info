@@ -28,23 +28,23 @@ key_sw[0] => key_sw[0].IN1
 key_sw[1] => key_sw[1].IN1
 key_sw[2] => key_sw[2].IN1
 key_sw[3] => ~NO_FANOUT~
-led[0] << sys_array_fetcher:fetching_unit.ready
-led[1] << Equal0.DB_MAX_OUTPUT_PORT_TYPE
-led[2] << ind[1].DB_MAX_OUTPUT_PORT_TYPE
-led[3] << ind[0].DB_MAX_OUTPUT_PORT_TYPE
-buzzer << <GND>
-segment[0] << seven_segment_4_digits:ds1.abcdefgh
-segment[1] << seven_segment_4_digits:ds1.abcdefgh
-segment[2] << seven_segment_4_digits:ds1.abcdefgh
-segment[3] << seven_segment_4_digits:ds1.abcdefgh
-segment[4] << seven_segment_4_digits:ds1.abcdefgh
-segment[5] << seven_segment_4_digits:ds1.abcdefgh
-segment[6] << seven_segment_4_digits:ds1.abcdefgh
-segment[7] << seven_segment_4_digits:ds1.abcdefgh
-digit[0] << seven_segment_4_digits:ds1.digit
-digit[1] << seven_segment_4_digits:ds1.digit
-digit[2] << seven_segment_4_digits:ds1.digit
-digit[3] << seven_segment_4_digits:ds1.digit
+led[0] <= sys_array_fetcher:fetching_unit.ready
+led[1] <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+led[2] <= ind[1].DB_MAX_OUTPUT_PORT_TYPE
+led[3] <= ind[0].DB_MAX_OUTPUT_PORT_TYPE
+buzzer <= <GND>
+segment[0] <= seven_segment_4_digits:ds1.abcdefgh
+segment[1] <= seven_segment_4_digits:ds1.abcdefgh
+segment[2] <= seven_segment_4_digits:ds1.abcdefgh
+segment[3] <= seven_segment_4_digits:ds1.abcdefgh
+segment[4] <= seven_segment_4_digits:ds1.abcdefgh
+segment[5] <= seven_segment_4_digits:ds1.abcdefgh
+segment[6] <= seven_segment_4_digits:ds1.abcdefgh
+segment[7] <= seven_segment_4_digits:ds1.abcdefgh
+digit[0] <= seven_segment_4_digits:ds1.digit
+digit[1] <= seven_segment_4_digits:ds1.digit
+digit[2] <= seven_segment_4_digits:ds1.digit
+digit[3] <= seven_segment_4_digits:ds1.digit
 
 
 |top|read_data:rd1

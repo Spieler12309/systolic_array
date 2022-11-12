@@ -4,10 +4,10 @@
 module sys_array_basic
 #(
     parameter DATA_WIDTH = 8,
-    parameter ARRAY_W_W  = 4, //Строк в массиве весов
-    parameter ARRAY_W_L  = 4, //Столбцов в массиве весов
-    parameter ARRAY_A_W  = 4, //Строк в массиве данных
-    parameter ARRAY_A_L  = 4) //Столбцов в массиве данных
+    parameter ARRAY_W_W  = 4, //Количество строк в массиве весов
+    parameter ARRAY_W_L  = 4, //Количество столбцов в массиве весов
+    parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
+    parameter ARRAY_A_L  = 4) //Количество столбцов в массиве данных
 (   input                                                           clk,
     input                                                           reset_n,
     input                                                           weights_load,
@@ -25,57 +25,58 @@ genvar j;
 genvar t;
 // Генерация массива вычислительных ячеек
 // Задание 2. Допишите необходимые входные и выходные сигналы.
+// i - строка, j - столбец
 generate
     for(i = 0; i < ARRAY_W_W; i = i + 1) begin : generate_array_proc
          for (j = 0; j < ARRAY_W_L; j = j + 1) begin : generate_array_proc2
-         if ((i == 0) && (j == 0)) // i - строка, j - столбец
+         if ((i == 0) && (j == 0)) // Генерация элемента нулевой строки и нулевого столбца
          begin
               sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst ( 
               .clk(clk),
               .reset_n(reset_n),
-              .param_load(weights_load),
+              .weight_load(weights_load),
               .input_data(input_data[0]),
               .prop_data({2*DATA_WIDTH{1'b0}}),
-              .param_data(weight_data[0][0]),
+              .weight_data(weight_data[0][0]),
               .out_data(temp_output_data[0][0]),
               .prop_param(propagate_module[0][0])
               );
          end
-         else if (i == 0) // Первая строка
+         else if (i == 0) // Генерация нулевой строки
          begin
               sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst (
               .clk(clk),
               .reset_n(reset_n),
-              .param_load(weights_load),
+              .weight_load(weights_load),
               .input_data(input_data[j]),
               .prop_data(temp_output_data[0][j-1]),
-              .param_data(weight_data[0][j]),
+              .weight_data(weight_data[0][j]),
               .out_data(temp_output_data[0][j]),
               .prop_param(propagate_module[0][j])
               );
          end
-         else if (j == 0) // Первый столбец
+         else if (j == 0) // Генерация нулевого столбца
          begin
               sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst (
               .clk(clk),
               .reset_n(reset_n),
-              .param_load(weights_load),
+              .weight_load(weights_load),
               .input_data(propagate_module[i-1][0]),
               .prop_data({2*DATA_WIDTH{1'b0}}),
-              .param_data(weight_data[i][0]),
+              .weight_data(weight_data[i][0]),
               .out_data(temp_output_data[i][0]),
               .prop_param(propagate_module[i][0])
               );
          end
          else
-         begin // Остальные элементы
+         begin // Генерация оставльных элементов
               sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) cell_inst (
               .clk(clk),
               .reset_n(reset_n),
-              .param_load(weights_load),
+              .weight_load(weights_load),
               .input_data(propagate_module[i-1][j]),
               .prop_data(temp_output_data[i][j-1]),
-              .param_data(weight_data[i][j]),
+              .weight_data(weight_data[i][j]),
               .out_data(temp_output_data[i][j]),
               .prop_param(propagate_module[i][j])
               );

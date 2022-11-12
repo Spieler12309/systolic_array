@@ -1,5 +1,5 @@
 Analysis & Synthesis report for task2
-Fri Dec 03 02:02:43 2021
+Sat Dec 04 12:49:17 2021
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -93,7 +93,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 03 02:02:43 2021       ;
+; Analysis & Synthesis Status        ; Successful - Sat Dec 04 12:49:17 2021       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; task2                                       ;
 ; Top-level Entity Name              ; top                                         ;
@@ -1009,6 +1009,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[5] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[8],   ;
 ;                                                                                                                                                    ; due to stuck port data_in ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[2].cell_inst|out_data[8],   ;
 ;                                                                                                                                                    ;                           ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[2].cell_inst|out_data[9]    ;
+; read_data:rd1|result[1][1][0]                                                                                                                      ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[3],   ;
+;                                                                                                                                                    ; due to stuck port data_in ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[6]    ;
 ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[0] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[2],   ;
 ;                                                                                                                                                    ; due to stuck port data_in ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[3]    ;
 ; read_data:rd1|data_rom_b[4][1][1]                                                                                                                  ; Stuck at GND              ; sys_array_fetcher:fetching_unit|shift_reg:generate_reads_shift_reg[4].reads|contents[1][1]                                                            ;
@@ -1034,8 +1036,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[1] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[4]    ;
 ;                                                                                                                                                    ; due to stuck port data_in ;                                                                                                                                                       ;
 ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[2] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[5]    ;
-;                                                                                                                                                    ; due to stuck port data_in ;                                                                                                                                                       ;
-; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[3] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[6]    ;
 ;                                                                                                                                                    ; due to stuck port data_in ;                                                                                                                                                       ;
 ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst|out_data[4] ; Stuck at GND              ; sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[1].cell_inst|out_data[7]    ;
 ;                                                                                                                                                    ; due to stuck port data_in ;                                                                                                                                                       ;
@@ -1879,7 +1879,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:03     ;
 +----------------+--------------+
 
 
@@ -1889,29 +1889,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Dec 03 02:02:26 2021
+    Info: Processing started: Sat Dec 04 12:48:52 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off task2 -c task2
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file source/seven_segment_4_digits.sv
     Info (12023): Found entity 1: seven_segment_4_digits File: D:/GitHub/systolic_array/task 2_full/source/seven_segment_4_digits.sv Line: 1
-Warning (10275): Verilog HDL Module Instantiation warning at top.sv(94): ignored dangling comma in List of Port Connections File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 94
+Warning (10275): Verilog HDL Module Instantiation warning at top.sv(93): ignored dangling comma in List of Port Connections File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 93
 Info (12021): Found 1 design units, including 1 entities, in source file source/top.sv
     Info (12023): Found entity 1: top File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file source/sys_array_fetcher.sv
-    Info (12023): Found entity 1: sys_array_fetcher File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 1
+    Info (12023): Found entity 1: sys_array_fetcher File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 2
 Info (12021): Found 1 design units, including 1 entities, in source file source/sys_array_cell.sv
     Info (12023): Found entity 1: sys_array_cell File: D:/GitHub/systolic_array/task 2_full/source/sys_array_cell.sv Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file source/sys_array_basic.sv
-    Info (12023): Found entity 1: sys_array_basic File: D:/GitHub/systolic_array/task 2_full/source/sys_array_basic.sv Line: 1
+    Info (12023): Found entity 1: sys_array_basic File: D:/GitHub/systolic_array/task 2_full/source/sys_array_basic.sv Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file source/shift_reg.sv
-    Info (12023): Found entity 1: shift_reg File: D:/GitHub/systolic_array/task 2_full/source/shift_reg.sv Line: 1
+    Info (12023): Found entity 1: shift_reg File: D:/GitHub/systolic_array/task 2_full/source/shift_reg.sv Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file source/read_data.sv
     Info (12023): Found entity 1: read_data File: D:/GitHub/systolic_array/task 2_full/source/read_data.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file source/button_debouncer.sv
     Info (12023): Found entity 1: button_debouncer File: D:/GitHub/systolic_array/task 2_full/source/button_debouncer.sv Line: 2
 Info (12127): Elaborating entity "top" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at top.sv(104): truncated value with size 32 to match size of target (2) File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 104
+Warning (10230): Verilog HDL assignment warning at top.sv(103): truncated value with size 32 to match size of target (2) File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 103
 Warning (10034): Output port "buzzer" at top.sv(11) has no driver File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 11
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_b" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_a" into its bus
@@ -1926,9 +1926,9 @@ Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "result" into its bus
 Info (12128): Elaborating entity "button_debouncer" for hierarchy "button_debouncer:bd1" File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 44
 Warning (10230): Verilog HDL assignment warning at button_debouncer.sv(37): truncated value with size 32 to match size of target (16) File: D:/GitHub/systolic_array/task 2_full/source/button_debouncer.sv Line: 37
-Info (12128): Elaborating entity "sys_array_fetcher" for hierarchy "sys_array_fetcher:fetching_unit" File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 71
-Warning (10030): Net "empty_wire_reads" at sys_array_fetcher.sv(26) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 26
-Warning (10030): Net "empty_wire_writes" at sys_array_fetcher.sv(28) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 28
+Info (12128): Elaborating entity "sys_array_fetcher" for hierarchy "sys_array_fetcher:fetching_unit" File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 70
+Warning (10030): Net "empty_wire_reads" at sys_array_fetcher.sv(27) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 27
+Warning (10030): Net "empty_wire_writes" at sys_array_fetcher.sv(29) has no driver or initial value, using a default initial value '0' File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 29
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_b" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_w" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "out_data" into its bus
@@ -1938,15 +1938,15 @@ Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_b" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "input_data_w" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "out_data" into its bus
-Info (12128): Elaborating entity "shift_reg" for hierarchy "sys_array_fetcher:fetching_unit|shift_reg:generate_reads_shift_reg[0].reads" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 45
-Info (12128): Elaborating entity "shift_reg" for hierarchy "sys_array_fetcher:fetching_unit|shift_reg:generate_writes_shift_reg[0].writes" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 59
-Info (12128): Elaborating entity "sys_array_basic" for hierarchy "sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 74
+Info (12128): Elaborating entity "shift_reg" for hierarchy "sys_array_fetcher:fetching_unit|shift_reg:generate_reads_shift_reg[0].reads" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 46
+Info (12128): Elaborating entity "shift_reg" for hierarchy "sys_array_fetcher:fetching_unit|shift_reg:generate_writes_shift_reg[0].writes" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 60
+Info (12128): Elaborating entity "sys_array_basic" for hierarchy "sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_fetcher.sv Line: 75
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "weight_data" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "temp_output_data" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "propagate_module" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "weight_data" into its bus
-Info (12128): Elaborating entity "sys_array_cell" for hierarchy "sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_basic.sv Line: 39
-Info (12128): Elaborating entity "seven_segment_4_digits" for hierarchy "seven_segment_4_digits:ds1" File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 82
+Info (12128): Elaborating entity "sys_array_cell" for hierarchy "sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[0].generate_array_proc2[0].cell_inst" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_basic.sv Line: 42
+Info (12128): Elaborating entity "seven_segment_4_digits" for hierarchy "seven_segment_4_digits:ds1" File: D:/GitHub/systolic_array/task 2_full/source/top.sv Line: 81
 Warning (10230): Verilog HDL assignment warning at seven_segment_4_digits.sv(56): truncated value with size 32 to match size of target (2) File: D:/GitHub/systolic_array/task 2_full/source/seven_segment_4_digits.sv Line: 56
 Info (278001): Inferred 7 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "sys_array_fetcher:fetching_unit|sys_array_basic:systolic_array|sys_array_cell:generate_array_proc[1].generate_array_proc2[4].cell_inst|Mult0" File: D:/GitHub/systolic_array/task 2_full/source/sys_array_cell.sv Line: 29
@@ -2082,9 +2082,9 @@ Info (21057): Implemented 693 device resources after synthesis - the final resou
     Info (21059): Implemented 17 output pins
     Info (21061): Implemented 670 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
-    Info: Peak virtual memory: 4778 megabytes
-    Info: Processing ended: Fri Dec 03 02:02:43 2021
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:31
+    Info: Peak virtual memory: 4775 megabytes
+    Info: Processing ended: Sat Dec 04 12:49:17 2021
+    Info: Elapsed time: 00:00:25
+    Info: Total CPU time (on all processors): 00:00:49
 
 
