@@ -7,8 +7,7 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_sys_array_cell.sv ../source/sys_array_cell.sv
-
+vlog +incdir+include+./ ../testbenches/tb_sys_array_cell.sv ../source/sys_array_cell.sv
 # указываем топовый TestBench
 vsim -novopt work.tb_sys_array_cell
 
@@ -19,11 +18,13 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/par
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/input_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/param_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/out_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_param
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/out_data_simple
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_param_simple
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell2/out_data_load
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell2/prop_param_load
 
 # симуляция и отображение результатов
 run -all
 #wave zoom full
-#WaveRestoreZoom {0 ns} [simtime]
-WaveRestoreZoom {0 ns} {1000 ns} 
+WaveRestoreZoom {0 ns} [simtime]
+#WaveRestoreZoom {0 ns} {1000 ns} 

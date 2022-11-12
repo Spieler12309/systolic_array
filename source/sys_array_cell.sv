@@ -1,5 +1,8 @@
+`include "defines.svh"
+
 module sys_array_cell
-#(parameter DATA_WIDTH = 8)
+#(parameter DATA_WIDTH = 8,
+parameter TYPE = load)
 (   input  clk,
     input  reset_n,
     input  param_load,
@@ -23,7 +26,7 @@ begin
 		param <= param_data;
 	end
 	else begin // Вычисление
-		out_data <= prop_data + input_data * param;
+		out_data <= prop_data + input_data * (param ? TYPE == load : param_data);
 		prop_param <= input_data;
 	end
 end

@@ -9,14 +9,19 @@
 				"cwd": "${workspaceRoot}",
 				"shell": {
 					"executable": "cmd.exe",
-					"args": ["/C"]
+					"args": [
+						"/C"
+					]
 				}
-            }, 
+			},
 			"group": {
 				"kind": "test",
 				"isDefault": true
 			},
-			"args": ["${fileBasename}"]
+			"args": [
+				"${fileBasename}"
+			],
+			"problemMatcher": []
 		},
 		{
 			"label": "Clear Modelsim",
