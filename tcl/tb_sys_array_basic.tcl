@@ -3,7 +3,7 @@
 # берём из пользовательских переменных сред
 set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 
-# создание рабочей библиотеки для симуляции
+# создание рабочей библиотеки для симуляции]
 vlib work
 
 # компиляция исходников (добавляем необходимые)
@@ -15,13 +15,14 @@ vsim -novopt work.tb_sys_array_basic
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/clk
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/reset_n
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/param_load
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/parameters_test
+add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weight_load
+add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weights_test
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/inputs_test
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/outputs_test
 
-# симуляция и отображение результатов
+# симуляция и отображение результатов   
 run -all
+    
 #wave zoom full
 WaveRestoreZoom {0 ns} [simtime]
-#WaveRestoreZoom {0 ns} {1000 ns} 
+#WaveRestoreZoom {0 ns} {1000 ns}

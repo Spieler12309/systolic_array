@@ -1,24 +1,17 @@
-module roma
-#(parameter DATA_WIDTH=8, 
-parameter ARRAY_W=4, 
-parameter ARRAY_L=4)
+module roma #(parameter FILE="data.hex",
+              parameter DATA_WIDTH=8, 
+              parameter ARRAY_W=4, 
+              parameter ARRAY_L=4)
 (	input clk,
     output reg [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH - 1:0] data_rom
 );
 
 genvar i, j;
 reg [DATA_WIDTH-1:0] rom [ARRAY_W*ARRAY_L-1:0];
-//wire [DATA_WIDTH*SIZE-1:0] rom_wire;
 wire [0:ARRAY_W-1] [0:ARRAY_L-1] [DATA_WIDTH - 1:0] rom_wire;
 initial begin
-    $readmemh ("a_data.hex", rom);
+    $readmemh (FILE, rom);
 end
-
-//generate
-//    for (t=0;t<SIZE;t=t+1) begin: generate_roma
-//        assign rom_wire[DATA_WIDTH*t +: DATA_WIDTH] = rom[t];
-//    end
-//endgenerate
 
 generate
     for (i=0;i<ARRAY_W;i=i+1) begin: generate_roma_W

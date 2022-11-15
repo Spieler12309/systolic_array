@@ -23,7 +23,7 @@ begin
         weight <= weight_data;
     end
     else begin // Вычисление данных
-        out_data <= prop_data + {{DATA_WIDTH{1'b0}}, input_data} * {{DATA_WIDTH{1'b0}}, weight};
+        out_data <= prop_data + input_data * weight;
         prop_param <= input_data;
     end
 end

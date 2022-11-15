@@ -13,15 +13,14 @@ vlog +incdir+./ ../testbenches/tb_shift_reg.sv ../source/shift_reg.sv
 vsim -novopt work.tb_shift_reg
 
 # добавление сигналов к отображению
-add wave sim:/tb_shift_reg/clk
-add wave sim:/tb_shift_reg/reset_n
-add wave sim:/tb_shift_reg/enable
-add wave sim:/tb_shift_reg/ctrl_code
-add wave sim:/tb_shift_reg/data_in
-add wave sim:/tb_shift_reg/data_write
+add wave -noupdate -radix binary sim:/tb_shift_reg/clk
+add wave -noupdate -radix binary sim:/tb_shift_reg/reset_n
+add wave -noupdate -radix unsigned sim:/tb_shift_reg/ctrl_code
+add wave -noupdate -radix decimal sim:/tb_shift_reg/data_in
+add wave -noupdate -radix decimal sim:/tb_shift_reg/data_write
 
-add wave sim:/tb_shift_reg/data_read
-add wave sim:/tb_shift_reg/data_out
+add wave -noupdate -radix decimal sim:/tb_shift_reg/data_read
+add wave -noupdate -radix decimal sim:/tb_shift_reg/data_out
 
 # симуляция и отображение результатов
 run -all
