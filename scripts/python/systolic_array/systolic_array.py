@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 
-path = "../../../{}_data.hex"
+path = "{}_data.hex"
 
 def calc_array(A, B, ARRAY_W, ARRAY_L):
     res = np.zeros((ARRAY_W, ARRAY_W), dtype = np.int16)
@@ -37,13 +37,13 @@ def calc_array(A, B, ARRAY_W, ARRAY_L):
 def print_array1(A):
     for i in A:
         for j in i:
-            print(hex(j & 0xff)[2:], end=" ")
+            print(hex(j & 0xff)[2:].zfill(2), end=" ")
         print();
 
 def print_array2(A):
     for i in A:
         for j in i:
-            print(hex(j & 0xffff)[2:], end=" ")
+            print(hex(j & 0xffff)[2:].zfill(4), end=" ")
         print();
 
 def simple_test():
@@ -57,11 +57,11 @@ def simple_test():
         [5, 6, 7, 8],
         [9, 10, 11, 12]])
 
-    ARRAY_A_W = A.shape[0] # Кол-во столбцов
-    ARRAY_A_L = A.shape[1] # Кол-во строк
+    ARRAY_A_W = A.shape[1] # Кол-во столбцов
+    ARRAY_A_L = A.shape[0] # Кол-во строк
 
-    ARRAY_W_W = W.shape[0] # Кол-во столбцов
-    ARRAY_W_L = W.shape[1] # Кол-во строк
+    ARRAY_W_W = W.shape[1] # Кол-во столбцов
+    ARRAY_W_L = W.shape[0] # Кол-во строк
 
     old_stdout = sys.stdout
 
@@ -94,11 +94,11 @@ def global_test(n):
         A = np.random.randint(-63, 63, a_shape)
         W = np.random.randint(-63, 63, w_shape)
 
-        ARRAY_A_W = A.shape[0] # Кол-во столбцов
-        ARRAY_A_L = A.shape[1] # Кол-во строк
+        ARRAY_A_W = A.shape[0] # Кол-во строк
+        ARRAY_A_L = A.shape[1] # Кол-во столбцов
 
-        ARRAY_W_W = W.shape[0] # Кол-во столбцов
-        ARRAY_W_L = W.shape[1] # Кол-во строк
+        ARRAY_W_W = W.shape[0] # Кол-во строк
+        ARRAY_W_L = W.shape[1] # Кол-во столбцов
 
         old_stdout = sys.stdout
 
@@ -107,18 +107,21 @@ def global_test(n):
             print_array1(A)
         sys.stdout = old_stdout
         print("A {}:".format(A.shape))
+        print(A)
 
         with open(path.format("b"), "w") as sys.stdout:
             print_array1(W)
         sys.stdout = old_stdout
         print("\nW {}:".format(W.shape))
+        print(W)
 
         res = np.dot(A, W)
         with open(path.format("c"), "w") as sys.stdout:
             print_array2(res)
         sys.stdout = old_stdout
         print("\nres {}:".format(res.shape))
+        print(res)
 
         t = input()
 
-global_test(1)
+simple_test()

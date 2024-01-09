@@ -7,11 +7,11 @@ module tb_shift_reg
 
 reg clk, reset_n;
 reg [1:0] ctrl_code;
-reg [0: LENGTH-1] [DATA_WIDTH-1:0] data_in;
+reg [DATA_WIDTH-1:0] data_in [0: LENGTH-1];
 reg [DATA_WIDTH-1:0] data_write;
 
 wire [DATA_WIDTH-1:0] data_read;
-wire [0: LENGTH-1] [DATA_WIDTH-1:0] data_out;
+wire [DATA_WIDTH-1:0] data_out [0: LENGTH-1];
 
 shift_reg #(.DATA_WIDTH(DATA_WIDTH), .LENGTH(LENGTH)) shift_reg1
 (

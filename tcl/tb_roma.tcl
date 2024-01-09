@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_roma.sv ../source/roma.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_roma
+vsim -voptargs=+acc work.tb_roma
 
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_roma/clk

@@ -11,6 +11,9 @@ copy c_data.hex sim
 copy images.hex sim
 copy weight.hex sim
 copy bias.hex sim
+copy images2.hex sim
+copy weight2.hex sim
+copy bias2.hex sim
 
 rem Запуск симуляции
 cd sim

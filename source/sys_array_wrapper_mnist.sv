@@ -1,6 +1,9 @@
 module sys_array_wrapper_mnist
 #(  parameter DATA_WIDTH = 16,//Разрядность шины входных данных
-	parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
+
+    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
+    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
+	  parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
     parameter ARRAY_A_L  = 784, //Количество столбцов в массиве данных
     parameter ARRAY_W_W  = 784, //Количество строк в массиве весов
     parameter ARRAY_W_L  = 10, //Количество столбцов в массиве весов
@@ -15,12 +18,12 @@ module sys_array_wrapper_mnist
     output [9:0]               classes
 );
 
-wire [0:IMAGES-1] [0:ARRAY_A_L-1] [DATA_WIDTH - 1:0] images;
-wire [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH - 1:0] input_image;
-wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH - 1:0] weights;
-wire signed [0:ARRAY_A_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0]   bias;
-wire signed [0:ARRAY_A_W-1] [0:ARRAY_W_L-1] [2*DATA_WIDTH-1:0] outputs_fetcher;
-wire signed [0:ARRAY_A_W-1] [0:ARRAY_W_L-1] [2*DATA_WIDTH-1:0] matrix_sum;
+wire signed [16 - 1:0] images [0:IMAGES-1] [0:ARRAY_A_L-1];
+wire signed [DATA_WIDTH - 1:0] input_image [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
+wire signed [DATA_WIDTH - 1:0] weights [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
+wire signed  [DATA_WIDTH-1:0]   bias [0:ARRAY_A_W-1] [0:ARRAY_W_L-1];
+wire signed  [2*DATA_WIDTH-1:0] outputs_fetcher [0:ARRAY_A_W-1] [0:ARRAY_W_L-1];
+wire signed  [2*DATA_WIDTH-1:0] matrix_sum [0:ARRAY_A_W-1] [0:ARRAY_W_L-1];
 wire ready1;
 reg ready1_prev;
 reg ready2;
@@ -35,24 +38,24 @@ always @(posedge clk)
         ready2 = 1'b0;
 
 // Модуль считывания изображений
-roma 
-#(.FILE("../../images.hex"), .DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L)) 
+rom
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L), .FILE("../../images2.hex"))
 rom_instance_images
 (   .clk(clk),
     .data_rom(images)
 );
 
 // Модуль считывания матрицы весов
-roma 
-#(.FILE("../../weight.hex"), .DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L)) 
+rom
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("../../weight2.hex"))
 rom_instance_weight
 (   .clk(clk), 
     .data_rom(weights)
 );
 
 // Модуль считывания матрицы весов
-roma 
-#(.FILE("../../bias.hex"), .DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L)) 
+rom
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L), .FILE("../../bias2.hex"))
 rom_instance_bias
 (   .clk(clk), 
     .data_rom(bias)
@@ -66,17 +69,18 @@ generate
 endgenerate
 
 // Модуль вычислителя
-sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH), 
+sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH),
+                    .ARRAY_W(ARRAY_W_L), .ARRAY_L(ARRAY_W_W),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
 fetching_unit
 (
     .clk(clk),
     .reset_n(reset_n),
-    .load_params(~load_params),
+    .weights_load(~load_params),
     .start_comp(~start_comp),
-    .input_data_a(input_image),
-    .input_data_w(weights),
+    .input_data(input_image),
+    .weights(weights),
     .ready(ready1),
     .out_data(outputs_fetcher)
 );
@@ -86,7 +90,7 @@ generate
     for (ii = 0; ii < ARRAY_A_W; ii++) begin : outputs_fetcher_generation_i
         for (jj = 0; jj < ARRAY_W_L; jj++) begin : outputs_fetcher_generation_j
             assign matrix_sum[ii][jj] = ready1
-                                        ? outputs_fetcher[ii][jj] + bias[ii][jj] 
+                                        ? outputs_fetcher[ii][jj] + {{DATA_WIDTH{bias[ii][jj][DATA_WIDTH-1]}}, bias[ii][jj]}
                                         : {2*DATA_WIDTH{1'b0}};
 		  end
 	 end

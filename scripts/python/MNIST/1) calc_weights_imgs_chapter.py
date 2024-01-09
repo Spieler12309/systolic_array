@@ -8,17 +8,18 @@ from sklearn.linear_model import LogisticRegression
 import pickle
 
 # Скачивание датасета
-mnist = fetch_openml('mnist_784')
+mnist = fetch_openml('Fashion-MNIST_seed_1_nrows_2000_nclasses_10_ncols_100_stratify_True')
 
 # Получение картинок и результата
 X = mnist.data
+print(X)
 Y = mnist.target
 
 # Распределение данных на обучающие и тестовые
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.15, random_state = 0 )
 
 # Создание модели для обучения
-logit_model = LogisticRegression(multi_class = 'multinomial', max_iter = 1e3, C = 1, solver = 'sag')
+logit_model = LogisticRegression(multi_class = 'multinomial', max_iter = 100, C = 1, solver = 'sag')
 
 # Обучение модели
 logit_model.fit(X_train, Y_train)
@@ -43,7 +44,9 @@ def save(a, name):
 # Сохраняем веса и смещения
 save(logit_model.coef_, 'weight')
 save(logit_model.intercept_, 'bias')
-
+print("save complete")
+print(Y_train[:100])
+print(logit_model.predict(X_test)[:100])
 image_labels = [52221, 66622, 52224, 65224, 52222, 52231, 62508, 21243, 24654, 32100]
 
 imgs = X_train.loc[X_train.index.isin(image_labels)]

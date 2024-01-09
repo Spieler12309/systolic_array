@@ -1,12 +1,14 @@
 module sys_array_wrapper 
 #(  parameter DATA_WIDTH = 8,//Разрядность шины входных данных
-	parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
+    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
+    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
+	  parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
     parameter ARRAY_A_L  = 3, //Количество столбцов в массиве данных
     parameter ARRAY_W_W  = 3, //Количество строк в массиве весов
     parameter ARRAY_W_L  = 4) //Количество столбцов в массиве весов
 (   input  clk,
     input  reset_n,
-    input  load_params,
+    input load_params,
     input  start_comp,
     input  [3:0] row,
     input  [3:0] col,
@@ -16,39 +18,39 @@ module sys_array_wrapper
 
 localparam NUM_HEX = DATA_WIDTH >> 1; // Количество необходимых семисегментных индикаторов
 
-wire [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH - 1:0] input_data_a;
-wire [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH - 1:0] input_data_w;
-wire [0:ARRAY_A_W-1] [0:ARRAY_W_L-1] [2*DATA_WIDTH-1:0] outputs_fetcher;
+reg signed [DATA_WIDTH - 1:0] input_data [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
+reg signed [DATA_WIDTH - 1:0] weights [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
+wire signed [2*DATA_WIDTH-1:0] outputs_fetcher [0:ARRAY_A_W-1] [0:ARRAY_W_L-1];
 
 genvar ii;
-// Модуль считывания матрицы A
-roma
-#(.FILE("../../a_data.hex"), .DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_A_L)) 
+
+rom
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_A_L), .FILE("../../a_data.hex")) 
 rom_instance_a
 (   .clk(clk), 
-    .data_rom(input_data_a)
+    .data_rom(input_data)
 );
 
-// Модуль считывания матрицы весов
-roma 
-#(.FILE("../../b_data.hex"), .DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L)) 
-rom_instance_w
+rom
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("../../b_data.hex")) 
+rom_instance_b
 (   .clk(clk), 
-    .data_rom(input_data_w)
+    .data_rom(weights)
 );
 
 // Модуль вычислителя
-sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH), 
+sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH),
+                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
 fetching_unit
 (
     .clk(clk),
     .reset_n(reset_n),
-    .load_params(~load_params),
+    .weights_load(~load_params),
     .start_comp(~start_comp),
-    .input_data_a(input_data_a),
-    .input_data_w(input_data_w),
+    .input_data(input_data),
+    .weights(weights),
     .ready(ready),
     .out_data(outputs_fetcher)
 );

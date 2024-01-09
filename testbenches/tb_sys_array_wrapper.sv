@@ -2,6 +2,8 @@
 
 module tb_sys_array_wrapper
 #(  parameter DATA_WIDTH = 8,//Разрядность шины входных данных
+    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
+    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
   	parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
     parameter ARRAY_A_L  = 3, //Количество столбцов в массиве данных
     parameter ARRAY_W_W  = 3, //Количество строк в массиве весов
@@ -13,6 +15,7 @@ wire [0:5][7:0] out_data;
 wire ready;
 
 sys_array_wrapper #(.DATA_WIDTH(DATA_WIDTH), 
+                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
 sys_array_wrapper0 (

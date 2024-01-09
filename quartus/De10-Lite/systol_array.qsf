@@ -38,22 +38,19 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
-set_global_assignment -name TOP_LEVEL_ENTITY sys_array_wrapper
+set_global_assignment -name TOP_LEVEL_ENTITY sys_array_wrapper_mnist
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:26:17  APRIL 11, 2021"
-set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (SystemVerilog)"
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (SystemVerilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_P11 -to clk
 set_location_assignment PIN_C14 -to hex_connect[0][0]
 set_location_assignment PIN_E15 -to hex_connect[0][1]
@@ -117,15 +114,28 @@ set_location_assignment PIN_C10 -to col[0]
 set_location_assignment PIN_A8 -to ready
 set_global_assignment -name POWER_USE_INPUT_FILES OFF
 set_global_assignment -name VERILOG_CONSTANT_LOOP_LIMIT 100000
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name HEX_FILE ../../weight2.hex
+set_global_assignment -name HEX_FILE ../../images2.hex
+set_global_assignment -name HEX_FILE ../../bias2.hex
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/seg7_tohex_mnist.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/max_num.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/seg7_tohex.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/shift_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/rom.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_wrapper_mnist.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_split.sv
+set_global_assignment -name HEX_FILE ../../weight.hex
+set_global_assignment -name HEX_FILE ../../images.hex
 set_global_assignment -name HEX_FILE ../../c_data.hex
 set_global_assignment -name HEX_FILE ../../b_data.hex
 set_global_assignment -name HEX_FILE ../../a_data.hex
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_fetcher_synth.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_fetcher.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_cell.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_basic.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/shift_reg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/seg7_tohex.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/roma.sv
+set_global_assignment -name MIF_FILE ../../systol_array.mif
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 16
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

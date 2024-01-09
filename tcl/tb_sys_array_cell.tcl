@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_sys_array_cell.sv ../source/sys_array_cell.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_sys_array_cell
+vsim -voptargs=+acc work.tb_sys_array_cell
 
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/clk
@@ -18,9 +18,9 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/res
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weight_load
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/input_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weight_data
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weights
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/out_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_param
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_input
 
 # симуляция и отображение результатов
 run -all

@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_fifo_mem.sv ../source/fifo/fifo_mem.sv ../source/fifo/write_pointer.sv ../source/fifo/read_pointer.sv ../source/fifo/status_signal.sv ../source/fifo/memory_array.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_fifo_mem
+vsim -voptargs=+acc work.tb_fifo_mem
 
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_fifo_mem/clk

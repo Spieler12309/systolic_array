@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_max_num.sv ../source/max_num.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_max_num
+vsim -voptargs=+acc work.tb_max_num
 
 # добавление сигналов к отображению
 add wave -noupdate -radix binary sim:/tb_max_num/clk

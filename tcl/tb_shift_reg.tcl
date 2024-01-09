@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_shift_reg.sv ../source/shift_reg.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_shift_reg
+vsim -voptargs=+acc work.tb_shift_reg
 
 # добавление сигналов к отображению
 add wave -noupdate -radix binary sim:/tb_shift_reg/clk

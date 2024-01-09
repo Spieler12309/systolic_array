@@ -1,9 +1,9 @@
 module max_num
 #(  parameter DATA_WIDTH = 8) //Разрядность шины входных данных
-(   input                                         clk,
-    input                                         reset_n,
-    input                                         start,
-    input signed [0:9] [DATA_WIDTH-1:0] matrix,
+(   input                         clk,
+    input                         reset_n,
+    input                         start,
+    input signed [DATA_WIDTH-1:0] matrix [0:9],
 
     output reg [9:0] classes,
     output reg       ready
@@ -14,9 +14,9 @@ reg [4:0] half_max_reg;
 reg [2:0] three_max_reg;
 reg [1:0] i_var;
 
-reg [0:4] [DATA_WIDTH-1:0] half_max;
-reg [0:2] [DATA_WIDTH-1:0] three_max;
-reg [2*DATA_WIDTH-1:0] maximum;
+reg signed [DATA_WIDTH-1:0] half_max [0:4];
+reg signed [DATA_WIDTH-1:0] three_max [0:2];
+reg signed [DATA_WIDTH-1:0] maximum;
 
 integer i;
 

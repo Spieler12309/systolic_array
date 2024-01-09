@@ -5,12 +5,12 @@ parameter LENGTH=4)
 	input clk,
 	input reset_n,
 	input [1:0] ctrl_code,
-	input [0:LENGTH-1] [DATA_WIDTH-1:0] data_in,
-	input [DATA_WIDTH-1:0] data_write,
+	input signed [DATA_WIDTH-1:0] data_in [0:LENGTH-1],
+	input signed [DATA_WIDTH-1:0] data_write,
 
     //output reg en,
-	output reg [DATA_WIDTH-1:0] data_read,
-	output reg [0:LENGTH-1] [DATA_WIDTH-1:0] data_out
+	output reg signed [DATA_WIDTH-1:0] data_read,
+	output reg signed [DATA_WIDTH-1:0] data_out [0:LENGTH-1]
 );
 
 localparam REG_UPLOAD = 0,
@@ -18,7 +18,7 @@ localparam REG_UPLOAD = 0,
     REG_WRITE = 2,
     REG_READ = 3; //Gray coding of states
 
-reg [0:LENGTH-1] [DATA_WIDTH-1:0] contents;
+reg signed [DATA_WIDTH-1:0] contents [0:LENGTH-1];
 reg en;
 
 integer i;

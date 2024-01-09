@@ -10,14 +10,14 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_sys_array_basic.sv ../source/sys_array_basic.sv ../source/sys_array_cell.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_sys_array_basic
+vsim -voptargs=+acc work.tb_sys_array_basic
 
 # добавление сигналов к отображению
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/clk
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/reset_n
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weight_load
-add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weights_test
+add wave -noupdate -radix binary  sim:/tb_sys_array_basic/clk
+add wave -noupdate -radix binary  sim:/tb_sys_array_basic/reset_n
+add wave -noupdate -radix binary  sim:/tb_sys_array_basic/weights_load
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/inputs_test
+add wave -noupdate -radix decimal sim:/tb_sys_array_basic/weight_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_basic/outputs_test
 
 # симуляция и отображение результатов   

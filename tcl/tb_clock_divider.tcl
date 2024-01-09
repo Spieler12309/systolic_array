@@ -10,7 +10,7 @@ vlib work
 vlog +incdir+./ ../testbenches/tb_clock_divider.sv ../source/clock_divider.sv
 
 # указываем топовый TestBench
-vsim -novopt work.tb_clock_divider
+vsim -voptargs=+acc work.tb_clock_divider
 
 # добавление сигналов к отображению
 add wave -noupdate -radix decimal sim:/tb_clock_divider/clk

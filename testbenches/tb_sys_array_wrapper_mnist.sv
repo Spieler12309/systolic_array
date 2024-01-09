@@ -2,6 +2,8 @@
 
 module tb_sys_array_wrapper_mnist
 #(  parameter DATA_WIDTH = 16,//Разрядность шины входных данных
+    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
+    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
 	parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
     parameter ARRAY_A_L  = 784, //Количество столбцов в массиве данных
     parameter ARRAY_W_W  = 784, //Количество строк в массиве весов
@@ -14,10 +16,11 @@ wire [7:0] out_data;
 wire [9:0] classes;
 wire ready;
 
-sys_array_wrapper_mnist #(.DATA_WIDTH(DATA_WIDTH), 
+sys_array_wrapper_mnist #(.DATA_WIDTH(DATA_WIDTH),
+                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L), 
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L),
-                    .IMAGES(IMAGES)) 
+                    .IMAGES(IMAGES))
 sys_array_wrapper_mnist0 (
     .clk(clk),
     .reset_n(reset_n),
@@ -66,7 +69,7 @@ begin
             10'b0001000000: $display("Image #%d is 6", ii);
             10'b0010000000: $display("Image #%d is 7", ii);
             10'b0100000000: $display("Image #%d is 8", ii);
-            10'b1000000000: $display("default %10b", classes);
+            10'b1000000000: $display("Image #%d is 9", ii);
         endcase
         #100;
     end   

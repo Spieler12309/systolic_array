@@ -2,33 +2,39 @@
 
 module tb_sys_array_basic
 #(
-    parameter DATA_WIDTH = 8,//Разрядность шины входных данных
-	parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
-    parameter ARRAY_A_L  = 3, //Количество столбцов в массиве данных
-    parameter ARRAY_W_W  = 3, //Количество строк в массиве весов
-    parameter ARRAY_W_L  = 4);//Количество столбцов в массиве весов	
-reg [0:ARRAY_W_W-1] [0:ARRAY_W_L-1] [DATA_WIDTH-1:0] weights_test;
-reg [0:ARRAY_W_W-1] [DATA_WIDTH-1:0] inputs_test;
-wire [0:ARRAY_W_L-1] [2*DATA_WIDTH-1:0] outputs_test;
-reg clk, reset_n, weight_load;
-reg [0:ARRAY_A_W-1] [0:ARRAY_A_L-1] [DATA_WIDTH-1:0] input_data;
+    parameter DATA_WIDTH = 16,  // Размерность данных
+    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
+    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве    
+    parameter ARRAY_A_W = 5,  // Строк в массиве данных
+    parameter ARRAY_A_L = 3,  // Столбцов в массиве данных
+    parameter ARRAY_W_W = 3,  // Строк в массиве весов
+    parameter ARRAY_W_L = 4   // Столбцов в массиве весов
+);
+
+reg [DATA_WIDTH-1:0] weight_data [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
+reg [DATA_WIDTH-1:0] inputs_test [0:ARRAY_A_L-1];
+wire [2*DATA_WIDTH-1:0] outputs_test [0:ARRAY_W_L-1];
+reg clk, reset_n, weights_load;
+reg [DATA_WIDTH-1:0] input_data [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
 
 initial
 begin
-    input_data[0] = 'h010203;
-    input_data[1] = 'h040506;
-    input_data[2] = 'h070809;
-    input_data[3] = 'h0a0b0c;
+    input_data[0] = '{'h01, 'h02, 'h03};
+    input_data[1] = '{'h04, 'h05, 'h06};
+    input_data[2] = '{'h07, 'h08, 'h09};
+    input_data[3] = '{'h0A, 'h0B, 'h0C};
+    input_data[4] = '{'h0D, 'h0E, 'h0F};
 end
 
-sys_array_basic #(  .DATA_WIDTH(DATA_WIDTH), 
+sys_array_basic #(  .DATA_WIDTH(DATA_WIDTH),
+                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
 systolic_array(
 	.clk(clk),
 	.reset_n(reset_n),
-	.weight_load(weight_load),
-	.weight_data(weights_test),
+	.weights_load(weights_load),
+	.weight_data(weight_data),
 	.input_data(inputs_test),
 	.output_data(outputs_test)
 );
@@ -44,25 +50,30 @@ integer ii, jj;
 
 initial
     begin
-        reset_n=0; weight_load = 0;
+        reset_n=0; weights_load = 0;
         #80; reset_n=1;
         #20;
 
         for (ii = 0; ii < ARRAY_W_W; ii = ii + 1) begin
             for (jj = 0; jj < ARRAY_W_L; jj = jj + 1) begin
-                weights_test[ii][jj] = ARRAY_W_L*ii + jj + 1;
+                weight_data[ii][jj] = ARRAY_W_L*ii + jj + 1;
             end
         end
-        weight_load = 1;
+        weights_load = 1;
 
-        #20; weight_load = 0;
+        #20; weights_load = 0;
         #20; inputs_test[0] = input_data[0][0];
         #20; inputs_test[0] = input_data[1][0]; inputs_test[1] = input_data[0][1];
         #20; inputs_test[0] = input_data[2][0]; inputs_test[1] = input_data[1][1]; inputs_test[2] = input_data[0][2];
-        #20; inputs_test[0] = input_data[3][0]; inputs_test[1] = input_data[2][1]; inputs_test[2] = input_data[1][2]; 
-        #20;                                    inputs_test[1] = input_data[3][1]; inputs_test[2] = input_data[2][2]; 
-        #20;                                                                       inputs_test[2] = input_data[3][2]; 
-
-        #500; $finish;
+        #20; inputs_test[0] = input_data[3][0]; inputs_test[1] = input_data[2][1]; inputs_test[2] = input_data[1][2]; inputs_test[3] = input_data[0][3];
+        #20; inputs_test[0] = input_data[4][0]; inputs_test[1] = input_data[3][1]; inputs_test[2] = input_data[2][2]; inputs_test[3] = input_data[1][3];
+        #20;                                    inputs_test[1] = input_data[4][1]; inputs_test[2] = input_data[3][2]; inputs_test[3] = input_data[2][3];
+        #20;                                                                       inputs_test[2] = input_data[4][2]; inputs_test[3] = input_data[3][3];
+        #20;                                                                                                          inputs_test[3] = input_data[4][3];
+        #20;                                                                                                                                            
+        #20;                                                                                                          
+        #20;
+        #500;        
+        $finish;
     end
 endmodule
