@@ -1,11 +1,9 @@
-module sys_array_wrapper 
+module sys_array_wrapper_simple 
 #(  parameter DATA_WIDTH = 8,//Разрядность шины входных данных
-    parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
-    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
-	parameter ARRAY_A_W  = 4, //Количество строк в массиве данных
-    parameter ARRAY_A_L  = 3, //Количество столбцов в массиве данных
-    parameter ARRAY_W_W  = 3, //Количество строк в массиве весов
-    parameter ARRAY_W_L  = 4) //Количество столбцов в массиве весов
+	parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
+    parameter ARRAY_A_L  = 784, //Количество столбцов в массиве данных
+    parameter ARRAY_W_W  = 784, //Количество строк в массиве весов
+    parameter ARRAY_W_L  = 10) //Количество столбцов в массиве весов
 (   input  clk,
     input  reset_n,
     input load_params,
@@ -40,7 +38,6 @@ rom_instance_b
 
 // Модуль вычислителя
 sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH),
-                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
                     .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
 fetching_unit

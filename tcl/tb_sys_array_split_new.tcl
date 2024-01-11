@@ -7,7 +7,7 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_sys_array_split.sv ../source/sys_array_split.sv
+vlog +incdir+./ ../testbenches/tb_sys_array_split_new.sv ../source/sys_array_split_new.sv
 
 # указываем топовый TestBench
 vsim -voptargs=+acc work.tb_sys_array_split
@@ -21,7 +21,22 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_split/ARRAY_A_L
 add wave -noupdate -radix decimal sim:/tb_sys_array_split/ARRAY_W_W
 add wave -noupdate -radix decimal sim:/tb_sys_array_split/ARRAY_W_L
 add wave -noupdate -radix decimal sim:/tb_sys_array_split/ready
-add wave -noupdate -radix decimal sim:/tb_sys_array_split/out_data
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/n
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/A_W_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/A_L_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/A_W_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/A_L_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/B_W_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/B_L_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/B_W_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/B_L_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/O_W_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/O_L_0
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/O_W_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/O_L_1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/to_n1
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/to_n2
+add wave -noupdate -radix decimal sim:/tb_sys_array_split/parent
 add wave -noupdate -radix decimal sim:/tb_sys_array_split/first_none
 add wave -noupdate -radix decimal sim:/tb_sys_array_split/last
 

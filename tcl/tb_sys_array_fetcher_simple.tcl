@@ -7,7 +7,7 @@ set QUARTUS_ROOTDIR $::env(QUARTUS_ROOTDIR)
 vlib work
 
 # компиляция исходников (добавляем необходимые)
-vlog +incdir+./ ../testbenches/tb_sys_array_fetcher.sv ../source/sys_array_fetcher.sv ../source/sys_array_basic.sv ../source/sys_array_cell.sv ../source/shift_reg.sv
+vlog +incdir+./ ../testbenches/tb_sys_array_fetcher_simple.sv ../source/sys_array_fetcher_simple.sv ../source/sys_array_basic_simple.sv ../source/sys_array_cell.sv ../source/shift_reg.sv
             
 # указываем топовый TestBench
 vsim -voptargs=+acc work.tb_sys_array_fetcher
@@ -22,6 +22,8 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/weights_data
 
 add wave -noupdate -radix binary sim:/tb_sys_array_fetcher/ready
 add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/out_data
+
+add wave -noupdate -radix decimal sim:/tb_sys_array_fetcher/result_data
 
 # симуляция и отображение результатов
 run -all

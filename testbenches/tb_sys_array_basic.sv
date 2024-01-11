@@ -11,11 +11,11 @@ module tb_sys_array_basic
     parameter ARRAY_W_L = 4   // Столбцов в массиве весов
 );
 
-reg [DATA_WIDTH-1:0] weight_data [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
-reg [DATA_WIDTH-1:0] inputs_test [0:ARRAY_A_L-1];
-wire [2*DATA_WIDTH-1:0] outputs_test [0:ARRAY_W_L-1];
+reg signed [DATA_WIDTH-1:0] weight_data [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
+reg signed [DATA_WIDTH-1:0] inputs_test [0:ARRAY_A_L-1];
+wire signed [2*DATA_WIDTH-1:0] outputs_test [0:ARRAY_W_L-1];
 reg clk, reset_n, weights_load;
-reg [DATA_WIDTH-1:0] input_data [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
+reg signed [DATA_WIDTH-1:0] input_data [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
 
 initial
 begin

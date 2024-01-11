@@ -86,10 +86,10 @@ def simple_test():
     print_array2(res)
     print("\n", res)
 
-def global_test(n):
+def global_test(n = 1):
     for i in range(n):
-        a_shape = (4, 3)#np.random.randint(1, 100, (2))
-        w_shape = (3, 4) #[a_shape[1], np.random.randint(1, 100)]
+        a_shape = (4, 5)#np.random.randint(1, 100, (2))
+        w_shape = (5, 8) #[a_shape[1], np.random.randint(1, 100)]
         print(w_shape)
         A = np.random.randint(-63, 63, a_shape)
         W = np.random.randint(-63, 63, w_shape)
@@ -124,4 +124,4 @@ def global_test(n):
 
         t = input()
 
-simple_test()
+global_test()

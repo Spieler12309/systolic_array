@@ -1,17 +1,3 @@
-`timescale 1 ns / 100 ps
-
-`ifndef types
-`define types 0;
-typedef struct packed {
-  logic [9:0] A_W_0, A_L_0, A_W_1, A_L_1;
-  logic [9:0] B_W_0, B_L_0, B_W_1, B_L_1;
-  logic [9:0] O_W_0, O_L_0, O_W_1, O_L_1;
-  logic [7:0] to_n1;
-  logic [7:0] to_n2;
-  logic signed [8:0] parent;
-} split_type;
-`endif
-
 module tb_sys_array_split #(
     parameter ARRAY_A_W = 5,  //Строк в массиве данных
     parameter ARRAY_A_L = 2,  //Столбцов в массиве данных
@@ -26,9 +12,24 @@ module tb_sys_array_split #(
 
   reg clk, reset_n, ready, start;
 
-  split_type out_data[OUT_SIZE];
-  wire [7:0] first_none;
-  wire [7:0] last;
+  wire [15:0] n [OUT_SIZE];
+  wire [15:0] A_W_0 [OUT_SIZE];
+  wire [15:0] A_L_0 [OUT_SIZE];
+  wire [15:0] A_W_1 [OUT_SIZE];
+  wire [15:0] A_L_1 [OUT_SIZE];
+  wire [15:0] B_W_0 [OUT_SIZE];
+  wire [15:0] B_L_0 [OUT_SIZE];
+  wire [15:0] B_W_1 [OUT_SIZE];
+  wire [15:0] B_L_1 [OUT_SIZE];
+  wire [15:0] O_W_0 [OUT_SIZE];
+  wire [15:0] O_L_0 [OUT_SIZE];
+  wire [15:0] O_W_1 [OUT_SIZE];
+  wire [15:0] O_L_1 [OUT_SIZE];
+  wire [15:0] to_n1 [OUT_SIZE];
+  wire [15:0] to_n2 [OUT_SIZE];
+  wire signed [16:0] parent [OUT_SIZE];
+  wire [15:0] first_none;
+  wire [15:0] last;
 
   sys_array_split #(
       .ARRAY_W      (ARRAY_W),
@@ -45,7 +46,23 @@ module tb_sys_array_split #(
       .ARRAY_A_L(ARRAY_A_L),
 
       .ready(ready),
-      .out_data(out_data),
+      .n(n),
+      .A_W_0(A_W_0),
+      .A_L_0(A_L_0),
+      .A_W_1(A_W_1),
+      .A_L_1(A_L_1),
+      .B_W_0(B_W_0),
+      .B_L_0(B_L_0),
+      .B_W_1(B_W_1),
+      .B_L_1(B_L_1),
+      .O_W_0(O_W_0),
+      .O_L_0(O_L_0),
+      .O_W_1(O_W_1),
+      .O_L_1(O_L_1),
+      .to_n1(to_n1),
+      .to_n2(to_n2),
+      .parent(parent),
+
       .first_none(first_none),
       .last(last)
   );

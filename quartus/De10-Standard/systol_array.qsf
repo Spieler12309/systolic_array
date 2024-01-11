@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSXFC6D6F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY sys_array_cell
+set_global_assignment -name TOP_LEVEL_ENTITY sys_array_wrapper_mnist_split
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:26:17  APRIL 11, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "21.1.0 Lite Edition"
@@ -53,29 +53,48 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name POWER_USE_INPUT_FILES OFF
 set_global_assignment -name VERILOG_CONSTANT_LOOP_LIMIT 100000
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_wrapper.sv
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 16
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_split.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_fetcher_split.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_basic_split.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/seg7_tohex.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/rom.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/clock_divider.sv
 set_global_assignment -name HEX_FILE ../../weight2.hex
 set_global_assignment -name HEX_FILE ../../images2.hex
 set_global_assignment -name HEX_FILE ../../bias2.hex
-set_global_assignment -name HEX_FILE ../../weight.hex
-set_global_assignment -name HEX_FILE ../../images.hex
-set_global_assignment -name HEX_FILE ../../bias.hex
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_wrapper_mnist.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_fetcher.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_wrapper_mnist_split.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_fetcher_split.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_cell.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_basic.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/sys_array_basic_split.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/shift_reg.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/seg7_tohex_mnist.sv
-set_global_assignment -name SYSTEMVERILOG_FILE ../../source/roma.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../source/rom.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../source/max_num.sv
-set_global_assignment -name NUM_PARALLEL_PROCESSORS 16
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AA15 -to reset_n
+set_location_assignment PIN_AA14 -to start_comp
+set_location_assignment PIN_AB30 -to image_num[0]
+set_location_assignment PIN_Y27 -to image_num[1]
+set_location_assignment PIN_AB28 -to image_num[2]
+set_location_assignment PIN_AC30 -to image_num[3]
+set_location_assignment PIN_AA24 -to classes[0]
+set_location_assignment PIN_AB23 -to classes[1]
+set_location_assignment PIN_AC23 -to classes[2]
+set_location_assignment PIN_AD24 -to classes[3]
+set_location_assignment PIN_AG25 -to classes[4]
+set_location_assignment PIN_AF25 -to classes[5]
+set_location_assignment PIN_AE24 -to classes[6]
+set_location_assignment PIN_AF24 -to classes[7]
+set_location_assignment PIN_AB22 -to classes[8]
+set_location_assignment PIN_AC22 -to classes[9]
+set_location_assignment PIN_W17 -to hex_connect[0]
+set_location_assignment PIN_V18 -to hex_connect[1]
+set_location_assignment PIN_AG17 -to hex_connect[2]
+set_location_assignment PIN_AG16 -to hex_connect[3]
+set_location_assignment PIN_AH17 -to hex_connect[4]
+set_location_assignment PIN_AG18 -to hex_connect[5]
+set_location_assignment PIN_AH18 -to hex_connect[6]
+set_location_assignment PIN_AF16 -to ready
+set_location_assignment PIN_AD17 -to hex_connect[7]
+set_global_assignment -name MAX_BALANCING_DSP_BLOCKS 110
+set_global_assignment -name AUTO_DSP_RECOGNITION OFF
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,11 +1,9 @@
 module sys_array_basic #(
-    parameter DATA_WIDTH = 8,// Размерность данных
-    parameter ARRAY_W = 10,  // Количество строк в систолическом массиве
-    parameter ARRAY_L = 10,  // Количество столбцов в систолическом массиве
-    parameter ARRAY_W_W = 4, // Строк в массиве весов
-    parameter ARRAY_W_L = 4, // Столбцов в массиве весов
-    parameter ARRAY_A_W = 4, // Строк в массиве данных
-    parameter ARRAY_A_L = 4  // Столбцов в массиве данных
+    parameter DATA_WIDTH = 8,// Размерность данных`
+    parameter ARRAY_W_W  = 4, // Строк в массиве весов
+    parameter ARRAY_W_L  = 4, // Столбцов в массиве весов
+    parameter ARRAY_A_W  = 4, // Строк в массиве данных
+    parameter ARRAY_A_L  = 4  // Столбцов в массиве данных
 ) (
     input                         clk,
     input                         reset_n,
@@ -16,16 +14,15 @@ module sys_array_basic #(
     output signed [2*DATA_WIDTH-1:0] output_data[0:ARRAY_W_L-1]
 );
 
-  wire [2*DATA_WIDTH-1:0] temp_output_data[0:ARRAY_W-1][0:ARRAY_L-1];
-  wire [  DATA_WIDTH-1:0] propagate_module[0:ARRAY_W-1][0:ARRAY_L-1];
+  wire [2*DATA_WIDTH-1:0] temp_output_data [0:ARRAY_W_L-1][0:ARRAY_W_W-1];
+  wire [  DATA_WIDTH-1:0] propagate_module [0:ARRAY_W_L-1][0:ARRAY_W_W-1];
 
   genvar i, j, t;
-
   // Генерация ячеек систолического массива
   // i - строка, j - столбец
   generate
-    for (i = 0; i < ARRAY_W; i = i + 1) begin : generate_array_proc
-      for (j = 0; j < ARRAY_L; j = j + 1) begin : generate_array_proc2
+    for (i = 0; i < ARRAY_W_L; i = i + 1) begin : generate_array_proc
+      for (j = 0; j < ARRAY_W_W; j = j + 1) begin : generate_array_proc2
         // Нулевая ячейка массива
         if ((i == 0) && (j == 0)) begin : array_first_cell
           sys_array_cell #(
@@ -41,8 +38,7 @@ module sys_array_basic #(
               .prop_output(propagate_module[0][0])
           );
         end
-		 else if (i == 0)
-     // Первая строка массива
+		 else if (i == 0) // Первая строка массива
 		 begin : array_first_row
           sys_array_cell #(
               .DATA_WIDTH(DATA_WIDTH)
@@ -50,15 +46,14 @@ module sys_array_basic #(
               .clk(clk),
               .reset_n(reset_n),
               .weight_load(weights_load),
-              .input_data(j < ARRAY_A_L ? input_data[j] : {DATA_WIDTH{1'b0}}),
+              .input_data(input_data[j]),
               .prop_data(temp_output_data[0][j-1]),
-              .weights(j < ARRAY_W_W ? weight_data[j][0] : {DATA_WIDTH{1'b0}}),
+              .weights(weight_data[j][0]),
               .out_data(temp_output_data[0][j]),
               .prop_output(propagate_module[0][j])
           );
         end
-		 else if (j == 0)
-     // Первый столбец массива
+		 else if (j == 0) // Первый столбец массива
 		 begin : array_first_column
           sys_array_cell #(
               .DATA_WIDTH(DATA_WIDTH)
@@ -68,11 +63,11 @@ module sys_array_basic #(
               .weight_load(weights_load),
               .input_data(propagate_module[i-1][0]),
               .prop_data({2 * DATA_WIDTH{1'b0}}),
-              .weights(i < ARRAY_W_L ? weight_data[0][i] : {DATA_WIDTH{1'b0}}),
+              .weights(weight_data[0][i]),
               .out_data(temp_output_data[i][0]),
               .prop_output(propagate_module[i][0])
           );
-        end else begin : array_all_cells  // Остальные элементы
+        end else begin : array_all_cells // Остальные элементы
           sys_array_cell #(
               .DATA_WIDTH(DATA_WIDTH)
           ) cell_inst (
@@ -81,7 +76,7 @@ module sys_array_basic #(
               .weight_load(weights_load),
               .input_data(propagate_module[i-1][j]),
               .prop_data(temp_output_data[i][j-1]),
-              .weights((i < ARRAY_W_L && j < ARRAY_W_W) ? weight_data[j][i] : {DATA_WIDTH{1'b0}}),
+              .weights(weight_data[j][i]),
               .out_data(temp_output_data[i][j]),
               .prop_output(propagate_module[i][j])
           );

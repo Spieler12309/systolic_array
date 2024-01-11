@@ -1,15 +1,16 @@
-module sys_array_wrapper_mnist
+module sys_array_wrapper_mnist_split
 #(  parameter DATA_WIDTH = 16,//Разрядность шины входных данных
     parameter ARRAY_W = 10,   // Количество строк в систолическом массиве
-    parameter ARRAY_L = 10,   // Количество столбцов в систолическом массиве
-	  parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
+    parameter ARRAY_L = 13,   // Количество столбцов в систолическом массиве
+	parameter ARRAY_A_W  = 1, //Количество строк в массиве данных
     parameter ARRAY_A_L  = 784, //Количество столбцов в массиве данных
     parameter ARRAY_W_W  = 784, //Количество строк в массиве весов
     parameter ARRAY_W_L  = 10, //Количество столбцов в массиве весов
+    parameter ARRAY_MAX_A_W = 1,
+    parameter OUT_SIZE = 128,
     parameter IMAGES = 10)
 (   input                      clk,
     input                      reset_n,
-    input                      load_params,
     input                      start_comp,
     input  [3:0]               image_num,
     output                     ready,
@@ -17,7 +18,7 @@ module sys_array_wrapper_mnist
     output [9:0]               classes
 );
 
-wire signed [16 - 1:0] images [0:IMAGES-1] [0:ARRAY_A_L-1];
+wire signed [DATA_WIDTH - 1:0] images [0:IMAGES-1] [0:ARRAY_A_L-1];
 wire signed [DATA_WIDTH - 1:0] input_image [0:ARRAY_A_W-1] [0:ARRAY_A_L-1];
 wire signed [DATA_WIDTH - 1:0] weights [0:ARRAY_W_W-1] [0:ARRAY_W_L-1];
 wire signed  [DATA_WIDTH-1:0]   bias [0:ARRAY_A_W-1] [0:ARRAY_W_L-1];
@@ -38,7 +39,7 @@ always @(posedge clk)
 
 // Модуль считывания изображений
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L), .FILE("../../images2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L), .FILE("images2.hex"))
 rom_instance_images
 (   .clk(clk),
     .data_rom(images)
@@ -46,7 +47,7 @@ rom_instance_images
 
 // Модуль считывания матрицы весов
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("../../weight2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("weight2.hex"))
 rom_instance_weight
 (   .clk(clk), 
     .data_rom(weights)
@@ -54,7 +55,7 @@ rom_instance_weight
 
 // Модуль считывания матрицы весов
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L), .FILE("../../bias2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L), .FILE("bias2.hex"))
 rom_instance_bias
 (   .clk(clk), 
     .data_rom(bias)
@@ -68,15 +69,15 @@ generate
 endgenerate
 
 // Модуль вычислителя
-sys_array_fetcher #(.DATA_WIDTH(DATA_WIDTH),
-                    .ARRAY_W(ARRAY_W_L), .ARRAY_L(ARRAY_W_W),
+sys_array_fetcher_split #(.DATA_WIDTH(DATA_WIDTH),
+                    .ARRAY_W(ARRAY_W), .ARRAY_L(ARRAY_L),
                     .ARRAY_W_W(ARRAY_W_W), .ARRAY_W_L(ARRAY_W_L),
-                    .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L)) 
+                    .ARRAY_A_W(ARRAY_A_W), .ARRAY_A_L(ARRAY_A_L),
+                    .ARRAY_MAX_A_W(ARRAY_MAX_A_W), .OUT_SIZE(OUT_SIZE))
 fetching_unit
 (
     .clk(clk),
     .reset_n(reset_n),
-    .weights_load(~load_params),
     .start_comp(~start_comp),
     .input_data(input_image),
     .weights(weights),
@@ -98,7 +99,7 @@ endgenerate
 max_num #(.DATA_WIDTH(2 * DATA_WIDTH)) //Разрядность шины входных данных
 max_num0
 (   .clk(clk),
-    .reset_n(reset_n && load_params),
+    .reset_n(reset_n && start_comp),
     .start(ready2),
     .matrix(matrix_sum[0]),
 
@@ -111,7 +112,5 @@ seg7_tohex_mnist hex_converter_i1
 (   .code(classes), 
     .hexadecimal(hex_connect)
 );
-
-assign led = classes;
 
 endmodule
