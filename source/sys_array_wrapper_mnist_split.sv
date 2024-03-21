@@ -39,7 +39,7 @@ always @(posedge clk)
 
 // Модуль считывания изображений
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L), .FILE("images2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(IMAGES), .ARRAY_L(ARRAY_A_L), .FILE("../../images2.hex"))
 rom_instance_images
 (   .clk(clk),
     .data_rom(images)
@@ -47,7 +47,7 @@ rom_instance_images
 
 // Модуль считывания матрицы весов
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("weight2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_W_W), .ARRAY_L(ARRAY_W_L), .FILE("../../weight2.hex"))
 rom_instance_weight
 (   .clk(clk), 
     .data_rom(weights)
@@ -55,7 +55,7 @@ rom_instance_weight
 
 // Модуль считывания матрицы весов
 rom
-#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L), .FILE("bias2.hex"))
+#(.DATA_WIDTH(DATA_WIDTH), .ARRAY_W(ARRAY_A_W), .ARRAY_L(ARRAY_W_L), .FILE("../../bias2.hex"))
 rom_instance_bias
 (   .clk(clk), 
     .data_rom(bias)
@@ -64,7 +64,7 @@ rom_instance_bias
 genvar ii, jj;
 generate
     for (ii = 0; ii < ARRAY_A_L; ii++) begin : input_image_generation
-        assign input_image[0][ii] = images[image_num][ii];
+        assign input_image[0][ii] = images[{1'b0, image_num[2:0]}][ii];
     end
 endgenerate
 

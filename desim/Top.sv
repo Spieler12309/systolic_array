@@ -4,20 +4,44 @@
 // Protect against undefined nets
 `default_nettype none
 
-module Top (CLOCK_50, KEY, SW, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, LEDR);
-    input  logic         CLOCK_50;   // DE-series 50 MHz clock signal
-    input  logic [ 3: 0] KEY;        // DE-series pushbuttons
-    input  logic [ 9: 0] SW;         // DE-series switches
-    output logic [ 6: 0] HEX0;       // DE-series HEX displays
-    output logic [ 6: 0] HEX1;
-    output logic [ 6: 0] HEX2;
-    output logic [ 6: 0] HEX3;
-    output logic [ 6: 0] HEX4;
-    output logic [ 6: 0] HEX5;
-    output logic [ 9: 0] LEDR;
+module Top (
+    CLOCK_50,
+    KEY,
+    SW,
+    HEX0,
+    HEX1,
+    LEDR
+);
+  input logic CLOCK_50;  // DE-series 50 MHz clock signal
+  input logic [3:0] KEY;  // DE-series pushbuttons
+  input logic [9:0] SW;  // DE-series switches
+  output logic [6:0] HEX0;  // DE-series HEX displays
+  output logic [6:0] HEX1;
+  output logic [9:0] LEDR;
 
-    assign HEX2[0] = SW[9];
-    assign HEX2[1] = SW[8];
+  wire ready;
+  assign HEX1 = {6'b111111, ~ready};
+
+  sys_array_wrapper_mnist_split #(
+      .DATA_WIDTH   (16),
+      .ARRAY_W      (10),
+      .ARRAY_L      (13),
+      .ARRAY_A_W    (1),
+      .ARRAY_A_L    (784),
+      .ARRAY_W_W    (784),
+      .ARRAY_W_L    (10),
+      .ARRAY_MAX_A_W(1),
+      .OUT_SIZE     (128),
+      .IMAGES       (10)
+  ) sawms1 (
+      .clk(CLOCK_50),
+      .reset_n(KEY[3]),
+      .start_comp(KEY[2]),
+      .image_num(SW[3:0]),
+      .ready(ready),
+      .hex_connect(HEX0),
+      .classes(LEDR)
+  );
 
 endmodule
 

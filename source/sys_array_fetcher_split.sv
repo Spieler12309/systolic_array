@@ -203,7 +203,7 @@ module sys_array_fetcher_split #(
       reset_n_basic <= 1'b1;
     end
     else if (cur >= 0 && cur < last) begin // Начат процесс вычисления подматриц
-      if (cnt == 0) begin // Задание сигналова на первом такте вычислений
+      if (cnt == 0) begin // Установка сигналов на нулевом такте вычислений
         len_w_l <= (split_out_data[cur].B_L_1 - split_out_data[cur].B_L_0 + 1);
         len_w_w <= (split_out_data[cur].B_W_1 - split_out_data[cur].B_W_0 + 1);
         len_a_l <= (split_out_data[cur].A_L_1 - split_out_data[cur].A_L_0 + 1);
@@ -233,7 +233,7 @@ module sys_array_fetcher_split #(
         end
       end
         else if (cnt == 1) begin 
-        // Задание сигналов на первом такте вычислений
+        // Установка сигналов на первом такте вычислений
         control_sr_read[0] <= 2'b11;
         cnt <= cnt + 1'b1;
         fetch_len <= len_w_l + len_a_w + len_w_w + 1;

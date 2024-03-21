@@ -1,11 +1,11 @@
 module sys_array_basic #(
-    parameter DATA_WIDTH = 8,// Размерность данных
+    parameter DATA_WIDTH = 8,// Разрядность шины входных данных¶
     parameter ARRAY_W = 10,  // Количество строк в систолическом массиве
     parameter ARRAY_L = 10,  // Количество столбцов в систолическом массиве
-    parameter ARRAY_W_W = 4, // Строк в массиве весов
-    parameter ARRAY_W_L = 4, // Столбцов в массиве весов
-    parameter ARRAY_A_W = 4, // Строк в массиве данных
-    parameter ARRAY_A_L = 4  // Столбцов в массиве данных
+    parameter ARRAY_W_W = 4, // Количество строк в массиве весов¶
+    parameter ARRAY_W_L = 4, // Количество столбцов в массиве весов¶
+    parameter ARRAY_A_W = 4, // Количество строк в массиве данных¶
+    parameter ARRAY_A_L = 4  // Количество столбцов в массиве данных¶
 ) (
     input                         clk,
     input                         reset_n,
