@@ -20,7 +20,7 @@ add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/inp
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_data
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/weights
 add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/out_data
-add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_input
+add wave -noupdate -radix decimal sim:/tb_sys_array_cell/systolic_array_cell/prop_output
 
 # симуляция и отображение результатов
 run -all

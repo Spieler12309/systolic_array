@@ -8,7 +8,7 @@ reg  signed [2*DATA_WIDTH-1:0] prop_data;
 reg  signed [DATA_WIDTH-1:0] weights;
 
 wire signed [2*DATA_WIDTH-1:0] out_data;
-wire signed [DATA_WIDTH-1:0] prop_input;
+wire signed [DATA_WIDTH-1:0] prop_output;
 
 reg clk, reset_n, weight_load;
 
@@ -20,7 +20,7 @@ sys_array_cell #(.DATA_WIDTH(DATA_WIDTH)) systolic_array_cell(
 	.prop_data(prop_data),
 	.weights(weights),
 	.out_data(out_data),
-    .prop_input(prop_input)
+    .prop_output(prop_output)
 );
 
 initial $dumpvars;
@@ -40,9 +40,9 @@ initial
         weight_load = 1;
         #20; weight_load = 0; 
         #20; input_data = 8'd1;
-        #5; $display("time = ", $time, " out_data = ", out_data, " prop_input = ", prop_input);
+        #5; $display("time = ", $time, " out_data = ", out_data, " prop_output = ", prop_output);
         #15; input_data = 8'd5;
-        #5; $display("time = ", $time, " out_data = ", out_data, " prop_input = ", prop_input);
+        #5; $display("time = ", $time, " out_data = ", out_data, " prop_output = ", prop_output);
         $finish;
     end
 endmodule
